@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Claude Code — Costruisci il tuo Agente AI | Davide Caiazzo</title>
+  <meta name="description" content="Il corso pratico per freelance, manager e imprenditori che vogliono costruire agenti AI con Claude Code senza scrivere una riga di codice."/>
+  <link rel="icon" type="image/png" href="https://automazioni.davidecaiazzo.it/favicon.png"/>
+  <link rel="apple-touch-icon" href="https://automazioni.davidecaiazzo.it/favicon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&display=swap" rel="stylesheet"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{overflow-x:hidden;scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:#080b10;color:#fff;overflow-x:hidden;min-height:100vh}
+    a,button{cursor:pointer}
+    ::selection{background:rgba(212,175,55,0.3);color:#fff}
+
+    #particleCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+    #trailCanvas{position:fixed;inset:0;z-index:9999;pointer-events:none}
+
+    .gold{background:linear-gradient(135deg,#BF953F 0%,#FCF6BA 25%,#B38728 50%,#FBF5B7 75%,#AA771C 100%);background-size:400% 400%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:goldShimmer 6s ease infinite}
+    @keyframes goldShimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    .btn-gold{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:22px 56px;background:linear-gradient(135deg,#BF953F,#D4AF37);color:#000;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:2.5px;border:none;border-radius:60px;text-decoration:none;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;font-family:'Inter',sans-serif;box-shadow:0 4px 30px rgba(212,175,55,0.25)}
+    .btn-gold::before{content:'';position:absolute;inset:-2px;background:linear-gradient(135deg,#FCF6BA,#D4AF37,#BF953F,#FCF6BA);background-size:300% 300%;border-radius:60px;z-index:-1;animation:goldShimmer 4s ease infinite;filter:blur(8px);opacity:0;transition:opacity 0.5s}
+    .btn-gold:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 24px 60px rgba(212,175,55,0.4)}
+    .btn-gold:hover::before{opacity:1}
+    .btn-gold span{position:relative;z-index:1}
+
+    .btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:18px 44px;background:transparent;color:#D4AF37;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:2px;border:1px solid rgba(212,175,55,0.35);border-radius:60px;text-decoration:none;transition:all 0.4s;font-family:'Inter',sans-serif}
+    .btn-outline:hover{background:rgba(212,175,55,0.06);border-color:rgba(212,175,55,0.6);transform:translateY(-2px)}
+
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(212,175,55,0.06);border:1px solid rgba(212,175,55,0.15);border-radius:40px;font-size:11px;font-weight:600;color:#D4AF37;letter-spacing:1px;text-transform:uppercase}
+
+    .card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:24px;padding:32px;position:relative;overflow:hidden;transition:all 0.4s}
+    .card:hover{background:rgba(255,255,255,0.05);border-color:rgba(212,175,55,0.12);transform:translateY(-4px)}
+    .card-gold{background:rgba(212,175,55,0.04);border:1px solid rgba(212,175,55,0.12)}
+    .card-gold:hover{background:rgba(212,175,55,0.06);border-color:rgba(212,175,55,0.2)}
+
+    .section{padding:clamp(64px,8vw,120px) clamp(20px,4vw,40px);max-width:1080px;margin:0 auto;position:relative;z-index:2}
+    .section-label{font-size:11px;text-transform:uppercase;letter-spacing:4px;color:#D4AF37;font-weight:600;margin-bottom:16px}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,46px);font-weight:900;line-height:1.15;margin-bottom:20px}
+    .section-sub{font-size:clamp(15px,1.5vw,18px);color:rgba(255,255,255,0.5);line-height:1.8;font-weight:300;max-width:640px}
+
+    .orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+
+    /* STICKY HEADER */
+    .sticky-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,11,16,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.08);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;transition:all 0.3s}
+    .sticky-header.hidden{transform:translateY(-100%)}
+
+    /* FAQ */
+    .faq-item{border-bottom:1px solid rgba(255,255,255,0.06);overflow:hidden}
+    .faq-q{width:100%;background:none;border:none;color:#fff;font-family:'Inter',sans-serif;font-size:16px;font-weight:600;text-align:left;padding:24px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color 0.3s}
+    .faq-q:hover{color:#D4AF37}
+    .faq-q .faq-icon{width:24px;height:24px;border-radius:50%;border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s;font-size:14px;color:#D4AF37}
+    .faq-item.open .faq-q .faq-icon{background:rgba(212,175,55,0.1);transform:rotate(45deg)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1)}
+    .faq-item.open .faq-a{max-height:300px}
+    .faq-a p{color:rgba(255,255,255,0.55);font-size:15px;line-height:1.8;padding-bottom:24px}
+
+    /* PROGRESS BAR MODULE */
+    .module-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:28px 32px;display:flex;gap:24px;align-items:flex-start;transition:all 0.4s;cursor:default}
+    .module-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(212,175,55,0.15);transform:translateX(4px)}
+    .module-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1;flex-shrink:0;width:44px}
+    .module-coming{opacity:0.4;filter:grayscale(0.8)}
+
+    /* COMPARISON TABLE */
+    .comp-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.04);align-items:center}
+    .comp-cell{padding:16px 20px;font-size:14px}
+    .comp-no{color:rgba(255,255,255,0.25)}
+    .comp-yes{color:#D4AF37;font-weight:600}
+    .comp-head{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:20px 20px 16px;background:rgba(255,255,255,0.02)}
+
+    /* PRICING */
+    .price-box{background:linear-gradient(160deg,#12151c 0%,#0a0d12 100%);border:1px solid rgba(212,175,55,0.15);border-radius:28px;padding:clamp(40px,5vw,60px);max-width:540px;margin:0 auto;position:relative;overflow:hidden;text-align:center}
+    .price-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top,rgba(212,175,55,0.06) 0%,transparent 70%);pointer-events:none}
+    .price-strike{font-size:22px;color:rgba(255,255,255,0.25);text-decoration:line-through;margin-bottom:4px}
+    .price-main{font-family:'Playfair Display',serif;font-size:clamp(56px,8vw,80px);font-weight:900;line-height:1}
+    .price-label{font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:2px;margin-top:8px}
+
+    /* PERSONA */
+    .persona-icon{width:56px;height:56px;border-radius:16px;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.15);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;flex-shrink:0}
+
+    /* FOOTER */
+    .footer-link{color:#D4AF37;text-decoration:none;transition:all 0.3s;opacity:0.7}
+    .footer-link:hover{opacity:1;text-shadow:0 0 8px rgba(212,175,55,0.4)}
+    .social-icon{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;text-decoration:none;transition:all 0.3s;opacity:0.8}
+    .social-icon:hover{opacity:1;transform:translateY(-3px);box-shadow:0 4px 15px rgba(0,0,0,0.4)}
+
+    /* GRID HELPERS */
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+    @media(max-width:900px){
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+      .comp-row{grid-template-columns:1fr 1fr 1fr}
+    }
+    @media(max-width:640px){
+      .grid-2,.grid-3{grid-template-columns:1fr}
+      .comp-row{grid-template-columns:1fr 1fr 1fr}
+      .comp-cell{padding:12px 10px;font-size:12px}
+      .module-card{flex-direction:column;gap:12px;padding:24px 20px}
+      .module-num{font-size:28px}
+      .sticky-header{padding:12px 20px}
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="particleCanvas"></canvas>
+<canvas id="trailCanvas"></canvas>
+
+<div class="orb" style="width:800px;height:800px;background:#D4AF37;top:-400px;right:-300px;opacity:0.05;position:fixed"></div>
+<div class="orb" style="width:600px;height:600px;background:#1a4a8a;bottom:-300px;left:-250px;opacity:0.04;position:fixed"></div>
+
+<!-- DISCLAIMER -->
+<div style="padding:12px 32px;text-align:center;background:#000;border-bottom:1px solid rgba(255,255,255,0.05);position:relative;z-index:101">
+  <p style="font-size:13px;font-family:monospace;color:rgba(255,255,255,0.4);line-height:1.6;max-width:900px;margin:0 auto">I contenuti di questo sito hanno natura pubblicitaria a favore della DC Academy S.r.l. &middot; Per qualsiasi approfondimento sui nostri servizi, clienti, testimonianze, testate e sui numeri citati su questo sito visita la pagina: www.davidecaiazzo.it/trasparenza</p>
+</div>
+
+<!-- STICKY HEADER -->
+<div class="sticky-header" id="stickyHeader">
+  <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:800"><span class="gold">DC</span> Academy</div>
+  <a href="#acquisto" class="btn-gold" style="padding:12px 28px;font-size:11px"><span>Acquista ora — €69 &rarr;</span></a>
+</div>
+
+<!-- =========================================
+     HERO
+     ========================================= -->
+<div style="position:relative;overflow:hidden;padding:clamp(80px,10vw,140px) 20px clamp(60px,8vw,100px);text-align:center">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center top,rgba(212,175,55,0.09) 0%,transparent 65%);pointer-events:none"></div>
+  <div style="position:relative;z-index:2;max-width:820px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:32px">
+      <span class="badge">Corso Online</span>
+      <span class="badge">5+ Ore di Video</span>
+      <span class="badge">21+ Lezioni</span>
+      <span class="badge">Accesso a Vita</span>
+    </div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(34px,6vw,72px);font-weight:900;line-height:1.05;margin-bottom:24px;letter-spacing:-0.5px">
+      Costruisci il tuo<br><span class="gold">Agente AI</span><br>con Claude Code
+    </h1>
+    <p style="font-size:clamp(16px,1.8vw,21px);color:rgba(255,255,255,0.5);line-height:1.8;font-weight:300;max-width:620px;margin:0 auto 40px">
+      Il corso pratico per chi vuole smettere di usare l&rsquo;AI come un motore di ricerca e iniziare a farla lavorare in autonomia, ogni giorno.
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center">
+      <a href="#acquisto" class="btn-gold" style="font-size:14px;padding:24px 60px"><span>VOGLIO IL MIO AGENTE AI &rarr;</span></a>
+      <a href="#programma" class="btn-outline">Vedi il programma</a>
+    </div>
+    <p style="font-size:12px;color:rgba(255,255,255,0.2);margin-top:20px">14 giorni soddisfatti o rimborsati &bull; Accesso immediato &bull; Fattura disponibile</p>
+  </div>
+</div>
+
+<!-- SOCIAL PROOF BAR -->
+<div style="background:rgba(212,175,55,0.04);border-top:1px solid rgba(212,175,55,0.08);border-bottom:1px solid rgba(212,175,55,0.08);padding:24px 40px;display:flex;flex-wrap:wrap;justify-content:center;gap:40px;position:relative;z-index:2">
+  <div style="text-align:center">
+    <p style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:#D4AF37">500+</p>
+    <p style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:2px">Professionisti formati</p>
+  </div>
+  <div style="text-align:center">
+    <p style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:#D4AF37">21+</p>
+    <p style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:2px">Lezioni pratiche</p>
+  </div>
+  <div style="text-align:center">
+    <p style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:#D4AF37">5+</p>
+    <p style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:2px">Ore di contenuto</p>
+  </div>
+  <div style="text-align:center">
+    <p style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:#D4AF37">0</p>
+    <p style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:2px">Righe di codice richieste</p>
+  </div>
+</div>
+
+<!-- =========================================
+     PROBLEMA
+     ========================================= -->
+<div class="section">
+  <p class="section-label">Il problema</p>
+  <h2 class="section-title">Stai usando l&rsquo;AI.<br>Ma non la stai <span class="gold">sfruttando davvero.</span></h2>
+  <p class="section-sub" style="margin-bottom:48px">Hai Claude, hai ChatGPT, forse hai anche qualche automazione. Eppure sei ancora lì a fare le stesse cose a mano.</p>
+  <div class="grid-2" style="gap:16px">
+    <div class="card" style="display:flex;gap:16px;align-items:flex-start">
+      <div style="font-size:24px;flex-shrink:0">😮‍💨</div>
+      <div>
+        <p style="font-weight:700;font-size:15px;margin-bottom:6px">Copi e incolli da mesi</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6">Usi l&rsquo;AI come un assistente che aspetta le tue domande. È utile, ma non è un agente.</p>
+      </div>
+    </div>
+    <div class="card" style="display:flex;gap:16px;align-items:flex-start">
+      <div style="font-size:24px;flex-shrink:0">🤯</div>
+      <div>
+        <p style="font-weight:700;font-size:15px;margin-bottom:6px">Gli agenti sembrano roba da dev</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6">Hai sentito parlare di Claude Code ma ti sembra troppo tecnico. Non sai da dove iniziare.</p>
+      </div>
+    </div>
+    <div class="card" style="display:flex;gap:16px;align-items:flex-start">
+      <div style="font-size:24px;flex-shrink:0">⏱️</div>
+      <div>
+        <p style="font-weight:700;font-size:15px;margin-bottom:6px">Perdi ore su task ripetitivi</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6">Report, recap, bozze, ricerche. Cose che un agente AI potrebbe fare al posto tuo mentre dormi.</p>
+      </div>
+    </div>
+    <div class="card" style="display:flex;gap:16px;align-items:flex-start">
+      <div style="font-size:24px;flex-shrink:0">🔄</div>
+      <div>
+        <p style="font-weight:700;font-size:15px;margin-bottom:6px">I tuoi workflow si rompono sempre</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6">Provi tool su tool, costruisci qualcosa, poi cambia un parametro e ricomincia da capo.</p>
+      </div>
+    </div>
+    <div class="card" style="display:flex;gap:16px;align-items:flex-start">
+      <div style="font-size:24px;flex-shrink:0">😰</div>
+      <div>
+        <p style="font-weight:700;font-size:15px;margin-bottom:6px">La tecnologia ti sta superando</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6">Chi impara questi sistemi oggi domani fa il doppio con la metà delle persone. Non stare fermo.</p>
+      </div>
+    </div>
+    <div class="card" style="display:flex;gap:16px;align-items:flex-start">
+      <div style="font-size:24px;flex-shrink:0">🧩</div>
+      <div>
+        <p style="font-weight:700;font-size:15px;margin-bottom:6px">Non riesci a sistematizzare</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6">Ogni automazione che costruisci rimane isolata. Non hai un sistema, hai mille pezzi staccati.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================
+     SOLUZIONE / CONFRONTO
+     ========================================= -->
+<div style="background:rgba(212,175,55,0.03);border-top:1px solid rgba(212,175,55,0.07);border-bottom:1px solid rgba(212,175,55,0.07);padding:clamp(64px,8vw,100px) 20px;position:relative;z-index:2">
+  <div style="max-width:900px;margin:0 auto">
+    <p style="font-size:11px;text-transform:uppercase;letter-spacing:4px;color:#D4AF37;font-weight:600;margin-bottom:16px;text-align:center">La differenza che cambia tutto</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,44px);font-weight:900;line-height:1.15;margin-bottom:48px;text-align:center">Claude Chat vs <span class="gold">Claude Code</span></h2>
+
+    <div style="border:1px solid rgba(255,255,255,0.06);border-radius:20px;overflow:hidden">
+      <!-- Header -->
+      <div class="comp-row">
+        <div class="comp-cell comp-head" style="color:rgba(255,255,255,0.3)">Capacità</div>
+        <div class="comp-cell comp-head" style="text-align:center;color:rgba(255,255,255,0.3)">Claude Chat</div>
+        <div class="comp-cell comp-head" style="text-align:center;color:#D4AF37">Claude Code</div>
+      </div>
+      <!-- Rows -->
+      <div class="comp-row">
+        <div class="comp-cell" style="color:rgba(255,255,255,0.6)">Risponde alle domande</div>
+        <div class="comp-cell comp-yes" style="text-align:center">✓</div>
+        <div class="comp-cell comp-yes" style="text-align:center">✓</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-cell" style="color:rgba(255,255,255,0.6)">Agisce in autonomia</div>
+        <div class="comp-cell comp-no" style="text-align:center">✗</div>
+        <div class="comp-cell comp-yes" style="text-align:center">✓</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-cell" style="color:rgba(255,255,255,0.6)">Legge e scrive file</div>
+        <div class="comp-cell comp-no" style="text-align:center">✗</div>
+        <div class="comp-cell comp-yes" style="text-align:center">✓</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-cell" style="color:rgba(255,255,255,0.6)">Esegue workflow complessi</div>
+        <div class="comp-cell comp-no" style="text-align:center">✗</div>
+        <div class="comp-cell comp-yes" style="text-align:center">✓</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-cell" style="color:rgba(255,255,255,0.6)">Ricorda il contesto del progetto</div>
+        <div class="comp-cell comp-no" style="text-align:center">✗</div>
+        <div class="comp-cell comp-yes" style="text-align:center">✓</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-cell" style="color:rgba(255,255,255,0.6)">Si connette ad altri strumenti</div>
+        <div class="comp-cell comp-no" style="text-align:center">✗</div>
+        <div class="comp-cell comp-yes" style="text-align:center">✓</div>
+      </div>
+      <div class="comp-row" style="border-bottom:none">
+        <div class="comp-cell" style="color:rgba(255,255,255,0.6)">Lavora mentre sei offline</div>
+        <div class="comp-cell comp-no" style="text-align:center">✗</div>
+        <div class="comp-cell comp-yes" style="text-align:center">✓</div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:32px;font-size:15px;color:rgba(255,255,255,0.4);line-height:1.7">
+      Claude Chat risponde quando glielo chiedi.<br>
+      <strong style="color:rgba(255,255,255,0.8)">Claude Code agisce. E con questo corso, lo costruisci tu.</strong>
+    </p>
+  </div>
+</div>
+
+<!-- =========================================
+     PER CHI È
+     ========================================= -->
+<div class="section">
+  <p class="section-label">Per chi è</p>
+  <h2 class="section-title">Non serve essere<br>uno <span class="gold">sviluppatore.</span></h2>
+  <p class="section-sub" style="margin-bottom:48px">Claude Code è pensato per chi lavora, non per chi programma. Se sai usare un computer, puoi costruire il tuo agente AI.</p>
+  <div class="grid-2">
+    <div class="card card-gold" style="display:flex;flex-direction:column">
+      <div class="persona-icon">💼</div>
+      <p style="font-size:18px;font-weight:700;margin-bottom:10px">Freelancer</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;flex:1">Automatizzi proposte commerciali, recap di progetto, reportistica clienti. Fai il lavoro di tre senza assumere nessuno.</p>
+    </div>
+    <div class="card card-gold" style="display:flex;flex-direction:column">
+      <div class="persona-icon">📊</div>
+      <p style="font-size:18px;font-weight:700;margin-bottom:10px">Manager</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;flex:1">Deleghi i task operativi all&rsquo;agente AI, ti liberi per le decisioni strategiche. La tua produttività scala senza aumentare il team.</p>
+    </div>
+    <div class="card card-gold" style="display:flex;flex-direction:column">
+      <div class="persona-icon">🚀</div>
+      <p style="font-size:18px;font-weight:700;margin-bottom:10px">Imprenditore</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;flex:1">Costruisci sistemi che lavorano mentre dormi. Dalla generazione di lead alla gestione clienti, tutto può girare in automatico.</p>
+    </div>
+    <div class="card card-gold" style="display:flex;flex-direction:column">
+      <div class="persona-icon">🎨</div>
+      <p style="font-size:18px;font-weight:700;margin-bottom:10px">Creativo / Content</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;flex:1">Produci 10x i contenuti in metà tempo. Ricerche, bozze, iterazioni, distribuzione multicanale — l&rsquo;agente gestisce il processo, tu la visione.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================
+     PROGRAMMA / CURRICULUM
+     ========================================= -->
+<div id="programma" style="background:rgba(255,255,255,0.01);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);padding:clamp(64px,8vw,100px) 20px;position:relative;z-index:2">
+  <div style="max-width:900px;margin:0 auto">
+    <p class="section-label" style="text-align:center">Il programma</p>
+    <h2 class="section-title" style="text-align:center;margin-bottom:12px">7 moduli.<br><span class="gold">Da zero all&rsquo;agente operativo.</span></h2>
+    <p style="text-align:center;font-size:15px;color:rgba(255,255,255,0.4);margin-bottom:56px">Ogni modulo è autonomo e pratico. Niente teoria inutile, solo quello che usi davvero.</p>
+    <div style="display:flex;flex-direction:column;gap:16px">
+
+      <div class="module-card">
+        <div class="module-num"><span class="gold">01</span></div>
+        <div>
+          <p style="font-weight:700;font-size:17px;margin-bottom:8px">Fondamenta e Setup</p>
+          <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Cos&rsquo;è Claude Code e perché è diverso da qualsiasi AI che hai usato. Come installarlo e configurarlo in meno di 10 minuti. Il tuo primo agente operativo entro la fine del modulo.</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">3 lezioni</span>
+            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Setup guidato</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-num"><span class="gold">02</span></div>
+        <div>
+          <p style="font-weight:700;font-size:17px;margin-bottom:8px">I Comandi Base</p>
+          <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">I 20 comandi che userai ogni giorno. Come comunicare con l&rsquo;agente in modo che capisca esattamente cosa vuoi. Le differenze tra prompt per chat e prompt per agenti.</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">4 lezioni</span>
+            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Cheat sheet incluso</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-num"><span class="gold">03</span></div>
+        <div>
+          <p style="font-weight:700;font-size:17px;margin-bottom:8px">Il tuo Workspace AI</p>
+          <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Come strutturare file e cartelle per lavorare con l&rsquo;agente in modo ordinato. Il file CLAUDE.md: la memoria permanente del tuo agente. Setup dell&rsquo;ambiente ideale per ogni tipo di progetto.</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">3 lezioni</span>
+            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Template workspace</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-num"><span class="gold">04</span></div>
+        <div>
+          <p style="font-weight:700;font-size:17px;margin-bottom:8px">Context Engineering</p>
+          <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Come dare memoria e contesto all&rsquo;agente per fargli capire il tuo lavoro. Tecniche avanzate di prompt per agenti. Come costruire istruzioni che durano nel tempo senza dover spiegare tutto da capo ogni volta.</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">4 lezioni</span>
+            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Framework context</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-num"><span class="gold">05</span></div>
+        <div>
+          <p style="font-weight:700;font-size:17px;margin-bottom:8px">Skills Personalizzate</p>
+          <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Come creare i tuoi strumenti su misura per il tuo tipo di lavoro. Automatizzi workflow completi con pochi comandi. Casi pratici: social selling, gestione clienti, produzione contenuti.</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">4 lezioni</span>
+            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Skills pronte all'uso</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card module-coming">
+        <div class="module-num"><span style="color:#D4AF37;opacity:0.5">06</span></div>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <p style="font-weight:700;font-size:17px">Integrazioni MCP</p>
+            <span style="font-size:10px;padding:3px 10px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.2);border-radius:20px;color:#D4AF37;text-transform:uppercase;letter-spacing:1px">Prossimamente</span>
+          </div>
+          <p style="font-size:14px;color:rgba(255,255,255,0.35);line-height:1.7">Come connettere Claude Code a qualsiasi applicazione esterna. MCP servers: Notion, Gmail, Slack, Drive e molto altro. Il tuo agente che parla con i tuoi strumenti.</p>
+        </div>
+      </div>
+
+      <div class="module-card module-coming">
+        <div class="module-num"><span style="color:#D4AF37;opacity:0.5">07</span></div>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <p style="font-weight:700;font-size:17px">Metodo di Lavoro</p>
+            <span style="font-size:10px;padding:3px 10px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.2);border-radius:20px;color:#D4AF37;text-transform:uppercase;letter-spacing:1px">Prossimamente</span>
+          </div>
+          <p style="font-size:14px;color:rgba(255,255,255,0.35);line-height:1.7">Come integrare Claude Code nel tuo flusso quotidiano in modo sostenibile. La routine da 60 minuti al giorno per delegare il 70% dei task operativi. Come evolvere il tuo sistema nel tempo.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- =========================================
+     TESTIMONIAL
+     ========================================= -->
+<div class="section">
+  <p class="section-label" style="text-align:center">Chi ha già iniziato</p>
+  <h2 class="section-title" style="text-align:center;margin-bottom:48px">Quello che dicono<br>chi ha <span class="gold">applicato il metodo.</span></h2>
+  <div class="grid-3" style="gap:20px">
+    <div class="card" style="border-left:2px solid rgba(212,175,55,0.3)">
+      <p style="font-size:28px;color:#D4AF37;margin-bottom:12px">&ldquo;</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:20px">In una settimana ho costruito un sistema che mi risparmia 3 ore al giorno. Non avevo mai toccato la riga di comando prima.</p>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#BF953F,#D4AF37);display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:14px">M</div>
+        <div>
+          <p style="font-size:13px;font-weight:700">Marco R.</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.3)">Consulente Marketing</p>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="border-left:2px solid rgba(212,175,55,0.3)">
+      <p style="font-size:28px;color:#D4AF37;margin-bottom:12px">&ldquo;</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:20px">Pensavo fosse roba per sviluppatori. Invece dal modulo 2 stavo già creando automazioni vere per il mio studio.</p>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#BF953F,#D4AF37);display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:14px">S</div>
+        <div>
+          <p style="font-size:13px;font-weight:700">Sara L.</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.3)">Avvocatessa, Studio Legale</p>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="border-left:2px solid rgba(212,175,55,0.3)">
+      <p style="font-size:28px;color:#D4AF37;margin-bottom:12px">&ldquo;</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:20px">Ho delegato la produzione dei miei post LinkedIn all&rsquo;agente. Pubblico il doppio, spendo la metà del tempo.</p>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#BF953F,#D4AF37);display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:14px">A</div>
+        <div>
+          <p style="font-size:13px;font-weight:700">Alessandro T.</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.3)">Imprenditore, E-commerce</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:24px">
+    <a href="https://www.davidecaiazzo.it/testimonianze" target="_blank" style="color:#D4AF37;font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(212,175,55,0.3)">Vedi tutte le testimonianze verificabili &rarr;</a>
+  </div>
+</div>
+
+<!-- =========================================
+     FAQ
+     ========================================= -->
+<div style="background:rgba(255,255,255,0.01);border-top:1px solid rgba(255,255,255,0.04);padding:clamp(64px,8vw,100px) 20px;position:relative;z-index:2">
+  <div style="max-width:780px;margin:0 auto">
+    <p class="section-label" style="text-align:center">Domande frequenti</p>
+    <h2 class="section-title" style="text-align:center;margin-bottom:48px">Hai dubbi?<br><span class="gold">Li anticipiamo noi.</span></h2>
+
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Devo saper programmare per seguire il corso?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>No. Claude Code non richiede di scrivere codice. Il corso è progettato per professionisti che vogliono usare l&rsquo;AI in modo avanzato senza diventare sviluppatori. Se sai usare una tastiera, sei pronto.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Cosa mi serve oltre al corso?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>Un abbonamento Claude Pro o Team (da $20/mese). È l&rsquo;unica spesa aggiuntiva. Per il setup tecnico, ti guida il corso passo dopo passo nella prima lezione.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Quando ricevo accesso ai contenuti?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>Immediatamente dopo l&rsquo;acquisto. Ricevi le credenziali di accesso via email entro pochi minuti.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>L&rsquo;accesso scade?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>No. L&rsquo;accesso è a vita. Includiamo anche tutti gli aggiornamenti futuri del corso — quando Claude Code evolve, il corso evolve con lui, senza costi aggiuntivi.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>È possibile avere la fattura per l&rsquo;acquisto?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>Sì. Dopo l&rsquo;acquisto puoi richiedere la fattura intestata alla tua azienda scrivendo a info@davidecaiazzo.it con i tuoi dati fiscali.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Il corso è pratico o teorico?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>100% pratico. Ogni lezione finisce con qualcosa che funziona sul tuo computer. Niente slide inutili, niente teoria astratta. Costruiamo insieme, lezione per lezione.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>C&rsquo;è un certificato di completamento?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>Sì. Al completamento del corso ricevi un certificato da DC Academy che attesta le competenze acquisite.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" style="border-bottom:none">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>E se non sono soddisfatto?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <p>Hai 14 giorni di garanzia soddisfatti o rimborsati. Se dopo aver seguito il corso non sei soddisfatto, ti rimborsiamo senza domande. Nessun cavillo, nessuna burocrazia.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================
+     PRICING / CTA
+     ========================================= -->
+<div id="acquisto" class="section" style="text-align:center">
+  <p class="section-label">Inizia adesso</p>
+  <h2 class="section-title" style="margin-bottom:12px">Un prezzo di lancio.<br><span class="gold">Un vantaggio per sempre.</span></h2>
+  <p style="font-size:15px;color:rgba(255,255,255,0.4);margin-bottom:56px">Chi inizia ora, inizia prima. Il prezzo salirà presto.</p>
+
+  <div class="price-box">
+    <div style="position:relative;z-index:1">
+      <span class="badge" style="margin-bottom:24px">Prezzo di lancio</span>
+      <div class="price-strike">€149</div>
+      <div class="price-main"><span class="gold">€69</span></div>
+      <p class="price-label">pagamento unico • accesso a vita</p>
+
+      <div style="height:1px;background:rgba(255,255,255,0.06);margin:32px 0"></div>
+
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:36px;text-align:left">
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,0.7)">
+          <span style="color:#D4AF37;font-size:16px">&#10003;</span> 21+ lezioni video pratiche
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,0.7)">
+          <span style="color:#D4AF37;font-size:16px">&#10003;</span> 5 moduli subito + 2 in arrivo
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,0.7)">
+          <span style="color:#D4AF37;font-size:16px">&#10003;</span> Template, cheat sheet e skills pronte
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,0.7)">
+          <span style="color:#D4AF37;font-size:16px">&#10003;</span> Aggiornamenti futuri inclusi
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,0.7)">
+          <span style="color:#D4AF37;font-size:16px">&#10003;</span> Certificato di completamento
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,0.7)">
+          <span style="color:#D4AF37;font-size:16px">&#10003;</span> 14 giorni soddisfatti o rimborsati
+        </div>
+      </div>
+
+      <a href="https://CHECKOUT_URL_PLACEHOLDER" class="btn-gold" style="width:100%;font-size:14px;padding:24px 40px">
+        <span>ACQUISTA ORA — €69 &rarr;</span>
+      </a>
+      <p style="font-size:12px;color:rgba(255,255,255,0.2);margin-top:16px">Pagamento sicuro &bull; Fattura disponibile &bull; Rimborso garantito 14gg</p>
+    </div>
+  </div>
+
+  <!-- Guarantee -->
+  <div style="max-width:540px;margin:40px auto 0;padding:28px 32px;background:rgba(212,175,55,0.04);border:1px solid rgba(212,175,55,0.1);border-radius:20px;display:flex;gap:20px;align-items:flex-start;text-align:left">
+    <div style="font-size:32px;flex-shrink:0">🛡️</div>
+    <div>
+      <p style="font-weight:700;font-size:15px;margin-bottom:6px">Garanzia 14 giorni</p>
+      <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7">Se entro 14 giorni dall&rsquo;acquisto non sei soddisfatto, ti rimborsiamo completamente. Senza domande, senza burocrazia. Il rischio è nostro, non tuo.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================
+     FINAL CTA / URGENCY
+     ========================================= -->
+<div style="background:linear-gradient(160deg,rgba(212,175,55,0.05) 0%,rgba(8,11,16,1) 100%);border-top:1px solid rgba(212,175,55,0.1);padding:clamp(64px,8vw,100px) 20px;text-align:center;position:relative;z-index:2">
+  <div style="max-width:680px;margin:0 auto">
+    <p style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,40px);font-weight:900;line-height:1.2;margin-bottom:20px">
+      Chi costruisce il suo agente AI oggi<br><span class="gold">domani fa cose che gli altri<br>non sanno ancora spiegare.</span>
+    </p>
+    <p style="font-size:15px;color:rgba(255,255,255,0.4);margin-bottom:40px;line-height:1.8">Il prezzo sale presto. L&rsquo;accesso è immediato. Il vantaggio è permanente.</p>
+    <a href="#acquisto" class="btn-gold" style="font-size:14px;padding:24px 60px"><span>VOGLIO IL MIO AGENTE AI — €69 &rarr;</span></a>
+  </div>
+</div>
+
+<!-- TESTIMONIALS DISCLAIMER -->
+<div style="text-align:center;padding:32px 20px;max-width:700px;margin:0 auto;position:relative;z-index:2">
+  <p style="font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;margin-bottom:12px">Le testimonianze riportate sono di studenti reali che hanno seguito il metodo. I risultati possono variare in base all&rsquo;impegno e al contesto individuale. Sono tutti verificabili tramite il link qui sotto.</p>
+  <a href="https://www.davidecaiazzo.it/testimonianze" target="_blank" style="color:#D4AF37;font-size:13px;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(212,175,55,0.3)">Vedi tutte le testimonianze &rarr;</a>
+</div>
+
+<!-- FOOTER -->
+<footer style="padding:40px 32px;border-top:1px solid rgba(212,175,55,0.1);text-align:center;position:relative;z-index:2">
+  <p style="font-size:11px;margin-bottom:16px">
+    <a href="https://docs.google.com/document/d/1qUNgRcZ0W9aZxutDu1Fv2k5aM6Nti4V0/edit" target="_blank" class="footer-link">Informativa Privacy</a> &nbsp;|&nbsp;
+    <a href="https://docs.google.com/document/d/1PTTs2QFMqBtZaefLHPrrfMxJRnlGewih/edit?usp=sharing&ouid=101002448876750781490&rtpof=true&sd=true" target="_blank" class="footer-link">Cookie Policy</a> &nbsp;|&nbsp;
+    <a href="https://docs.google.com/document/d/1K6WGjt9aFTRN-zWMvEOh5bw2A32nNag-/edit?usp=sharing&ouid=101002448876750781490&rtpof=true&sd=true" target="_blank" class="footer-link">Condizioni di Vendita</a>
+  </p>
+  <p style="font-size:12px;color:rgba(255,255,255,0.25);margin-bottom:20px">&copy; 2026 DC ACADEMY S.r.l. | P.IVA 05125350750 | info@davidecaiazzo.it | Via I. Adriano 9 | Lecce</p>
+  <div style="display:flex;justify-content:center;gap:16px">
+    <a href="https://www.instagram.com/davidecaiazzo_official" target="_blank" class="social-icon" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+    <a href="https://www.youtube.com/channel/UCTjgI7jliyFcO61LkeZbKCA?sub_confirmation=1" target="_blank" class="social-icon" style="background:#FF0000">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/davidecaiazzo/" target="_blank" class="social-icon" style="background:#0A66C2">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+// ===== PARTICLE CANVAS =====
+const canvas=document.getElementById('particleCanvas');const ctx=canvas.getContext('2d');
+function drawParticles(){canvas.width=window.innerWidth;canvas.height=document.body.scrollHeight;const n=Math.min(30,Math.floor(window.innerWidth/40));for(let i=0;i<n;i++){const x=Math.random()*canvas.width,y=Math.random()*canvas.height,s=Math.random()*1.3+0.3,o=Math.random()*0.12+0.02;ctx.beginPath();ctx.arc(x,y,s,0,Math.PI*2);ctx.fillStyle='rgba(212,175,55,'+o+')';ctx.fill()}}
+drawParticles();window.addEventListener('resize',drawParticles);
+
+// ===== MOUSE TRAIL =====
+(function(){
+  if(window.innerWidth<768)return;
+  var tc=document.getElementById('trailCanvas');if(!tc)return;
+  var ctx2=tc.getContext('2d');var trail=[];
+  function resizeTrail(){tc.width=window.innerWidth;tc.height=window.innerHeight}
+  resizeTrail();window.addEventListener('resize',resizeTrail);
+  document.addEventListener('mousemove',function(e){trail.push({x:e.clientX,y:e.clientY,alpha:1,size:3})});
+  function drawTrail(){
+    ctx2.clearRect(0,0,tc.width,tc.height);
+    for(var i=trail.length-1;i>=0;i--){
+      var p=trail[i];p.alpha-=0.03;p.size*=0.97;
+      if(p.alpha<=0){trail.splice(i,1);continue}
+      ctx2.beginPath();ctx2.arc(p.x,p.y,p.size,0,Math.PI*2);ctx2.fillStyle='rgba(212,175,55,'+p.alpha*0.6+')';ctx2.fill();
+      ctx2.beginPath();ctx2.arc(p.x,p.y,p.size*3,0,Math.PI*2);ctx2.fillStyle='rgba(212,175,55,'+p.alpha*0.08+')';ctx2.fill();
+    }
+    if(trail.length>75)trail.splice(0,trail.length-75);
+    requestAnimationFrame(drawTrail);
+  }
+  drawTrail();
+})();
+
+// ===== STICKY HEADER =====
+(function(){
+  var header=document.getElementById('stickyHeader');
+  var lastY=0;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(y>100){
+      header.style.opacity=y<lastY?'1':'0';
+      header.style.pointerEvents=y<lastY?'auto':'none';
+    }
+    lastY=y;
+  },{passive:true});
+})();
+
+// ===== FAQ =====
+function toggleFaq(btn){
+  var item=btn.closest('.faq-item');
+  var isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open')});
+  if(!isOpen)item.classList.add('open');
+}
+</script>
+
+<!-- Chatbot DC Academy -->
+<script src="https://dc-chatbot-production.up.railway.app/static/widget.js" defer></script>
+<link rel="stylesheet" href="https://dc-chatbot-production.up.railway.app/static/widget.css"/>
+</body>
+</html>
