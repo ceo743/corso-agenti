@@ -13,7 +13,7 @@
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     html{overflow-x:hidden;scroll-behavior:smooth}
-    body{font-family:'Inter',sans-serif;background:#080b10;color:#fff;overflow-x:hidden;min-height:100vh}
+    body{font-family:'Inter',sans-serif;background:#080b10;color:#fff;overflow-x:hidden;min-height:100vh;padding-bottom:80px}
     a,button{cursor:pointer}
     ::selection{background:rgba(212,175,55,0.3);color:#fff}
 
@@ -114,6 +114,36 @@
 <div class="orb" style="width:800px;height:800px;background:#D4AF37;top:-400px;right:-300px;opacity:0.05;position:fixed"></div>
 <div class="orb" style="width:600px;height:600px;background:#1a4a8a;bottom:-300px;left:-250px;opacity:0.04;position:fixed"></div>
 
+<!-- BARRA FLOTTANTE COUNTDOWN (fissa in basso) -->
+<div id="floatBar" style="position:fixed;bottom:0;left:0;right:0;z-index:300;background:linear-gradient(90deg,#0a0d13 0%,#111520 100%);border-top:1px solid rgba(212,175,55,0.25);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;box-shadow:0 -4px 40px rgba(0,0,0,0.6)">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <span style="font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:2px;white-space:nowrap">⚡ Offerta finisce in</span>
+    <div style="display:flex;gap:4px;align-items:center">
+      <div style="text-align:center;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.15);border-radius:8px;padding:4px 10px;min-width:44px">
+        <span id="cd2-days" style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#D4AF37;display:block;line-height:1.1">--</span>
+        <span style="font-size:9px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:1px">giorni</span>
+      </div>
+      <span style="color:rgba(212,175,55,0.3);font-size:16px;padding:0 2px">:</span>
+      <div style="text-align:center;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.15);border-radius:8px;padding:4px 10px;min-width:44px">
+        <span id="cd2-hours" style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#D4AF37;display:block;line-height:1.1">--</span>
+        <span style="font-size:9px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:1px">ore</span>
+      </div>
+      <span style="color:rgba(212,175,55,0.3);font-size:16px;padding:0 2px">:</span>
+      <div style="text-align:center;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.15);border-radius:8px;padding:4px 10px;min-width:44px">
+        <span id="cd2-mins" style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#D4AF37;display:block;line-height:1.1">--</span>
+        <span style="font-size:9px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:1px">min</span>
+      </div>
+      <span style="color:rgba(212,175,55,0.3);font-size:16px;padding:0 2px">:</span>
+      <div style="text-align:center;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.15);border-radius:8px;padding:4px 10px;min-width:44px">
+        <span id="cd2-secs" style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#D4AF37;display:block;line-height:1.1">--</span>
+        <span style="font-size:9px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:1px">sec</span>
+      </div>
+    </div>
+    <span style="font-size:13px;color:rgba(255,255,255,0.35);white-space:nowrap">poi <strong style="color:rgba(255,255,255,0.55)">€297</strong></span>
+  </div>
+  <a href="#acquisto" class="btn-gold" style="padding:10px 28px;font-size:11px;white-space:nowrap"><span>Acquista ora — €69 &rarr;</span></a>
+</div>
+
 <!-- STICKY HEADER (nav fissa) -->
 <div class="sticky-header" id="stickyHeader">
   <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:800"><span class="gold">Davide Caiazzo</span> Academy</div>
@@ -151,33 +181,6 @@
       <a href="#programma" class="btn-outline">Vedi il programma</a>
     </div>
     <p style="font-size:12px;color:rgba(255,255,255,0.2);margin-top:20px">14 giorni soddisfatti o rimborsati &bull; Accesso dal 1° giugno &bull; Fattura disponibile</p>
-
-    <!-- MINI COUNTDOWN HERO -->
-    <div style="margin-top:28px;display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;background:rgba(0,0,0,0.35);border:1px solid rgba(212,175,55,0.2);border-radius:16px;padding:14px 24px">
-      <span style="font-size:12px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:2px">Offerta finisce in</span>
-      <div style="display:flex;gap:6px;align-items:center">
-        <div style="text-align:center">
-          <span id="cd2-days" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#D4AF37">--</span>
-          <span style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:2px">g</span>
-        </div>
-        <span style="color:rgba(212,175,55,0.4);font-size:18px">:</span>
-        <div style="text-align:center">
-          <span id="cd2-hours" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#D4AF37">--</span>
-          <span style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:2px">h</span>
-        </div>
-        <span style="color:rgba(212,175,55,0.4);font-size:18px">:</span>
-        <div style="text-align:center">
-          <span id="cd2-mins" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#D4AF37">--</span>
-          <span style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:2px">m</span>
-        </div>
-        <span style="color:rgba(212,175,55,0.4);font-size:18px">:</span>
-        <div style="text-align:center">
-          <span id="cd2-secs" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#D4AF37">--</span>
-          <span style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:2px">s</span>
-        </div>
-      </div>
-      <span style="font-size:12px;color:rgba(255,255,255,0.35)">poi <strong style="color:rgba(255,255,255,0.6)">€297</strong></span>
-    </div>
   </div>
 </div>
 
