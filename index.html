@@ -47,8 +47,7 @@
     .orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
 
     /* STICKY HEADER */
-    .sticky-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,11,16,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.08);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;transition:all 0.3s}
-    .sticky-header.hidden{transform:translateY(-100%)}
+    .sticky-header{background:rgba(8,11,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.08);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;transition:all 0.3s}
 
     /* FAQ */
     .faq-item{border-bottom:1px solid rgba(255,255,255,0.06);overflow:hidden}
@@ -93,17 +92,17 @@
     .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 
-    @media(max-width:900px){
+    @media(max-width:768px){
       .grid-3{grid-template-columns:repeat(2,1fr)}
       .comp-row{grid-template-columns:1fr 1fr 1fr}
     }
-    @media(max-width:640px){
+    @media(max-width:600px){
       .grid-2,.grid-3{grid-template-columns:1fr}
       .comp-row{grid-template-columns:1fr 1fr 1fr}
       .comp-cell{padding:12px 10px;font-size:12px}
       .module-card{flex-direction:column;gap:12px;padding:24px 20px}
       .module-num{font-size:28px}
-      .sticky-header{padding:12px 20px}
+      .sticky-header{padding:10px 16px}
     }
   </style>
 </head>
@@ -115,16 +114,18 @@
 <div class="orb" style="width:800px;height:800px;background:#D4AF37;top:-400px;right:-300px;opacity:0.05;position:fixed"></div>
 <div class="orb" style="width:600px;height:600px;background:#1a4a8a;bottom:-300px;left:-250px;opacity:0.04;position:fixed"></div>
 
-<!-- DISCLAIMER -->
-<div style="padding:12px 32px;text-align:center;background:#000;border-bottom:1px solid rgba(255,255,255,0.05);position:relative;z-index:101">
-  <p style="font-size:13px;font-family:monospace;color:rgba(255,255,255,0.4);line-height:1.6;max-width:900px;margin:0 auto">I contenuti di questo sito hanno natura pubblicitaria a favore della DC Academy S.r.l. &middot; Per qualsiasi approfondimento sui nostri servizi, clienti, testimonianze, testate e sui numeri citati su questo sito visita la pagina: www.davidecaiazzo.it/trasparenza</p>
+<!-- FIXED TOP BAR: disclaimer + nav in single fixed container -->
+<div id="stickyHeader" style="position:fixed;top:0;left:0;right:0;z-index:200">
+  <div style="padding:9px 32px;text-align:center;background:#000;border-bottom:1px solid rgba(255,255,255,0.05)">
+    <p style="font-size:12px;font-family:monospace;color:rgba(255,255,255,0.4);line-height:1.5;max-width:900px;margin:0 auto">I contenuti di questo sito hanno natura pubblicitaria a favore della DC Academy S.r.l. &middot; Per qualsiasi approfondimento visita: www.davidecaiazzo.it/trasparenza</p>
+  </div>
+  <div class="sticky-header">
+    <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:800"><span class="gold">Davide Caiazzo</span> Academy</div>
+    <a href="#acquisto" class="btn-gold" style="padding:12px 28px;font-size:11px"><span>Acquista ora — €69 &rarr;</span></a>
+  </div>
 </div>
-
-<!-- STICKY HEADER -->
-<div class="sticky-header" id="stickyHeader">
-  <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:800"><span class="gold">DC</span> Academy</div>
-  <a href="#acquisto" class="btn-gold" style="padding:12px 28px;font-size:11px"><span>Acquista ora — €69 &rarr;</span></a>
-</div>
+<!-- Spacer to push content below fixed top bar -->
+<div style="height:105px"></div>
 
 <!-- =========================================
      HERO
@@ -571,7 +572,7 @@
           <span style="color:#D4AF37;font-size:16px">&#10003;</span> 21+ lezioni video pratiche
         </div>
         <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,0.7)">
-          <span style="color:#D4AF37;font-size:16px">&#10003;</span> 5 moduli subito + 2 in arrivo
+          <span style="color:#D4AF37;font-size:16px">&#10003;</span> Accesso a tutti i moduli dal 1° giugno
         </div>
         <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,0.7)">
           <span style="color:#D4AF37;font-size:16px">&#10003;</span> Template, cheat sheet e skills pronte
