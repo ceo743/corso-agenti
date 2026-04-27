@@ -151,6 +151,33 @@
       <a href="#programma" class="btn-outline">Vedi il programma</a>
     </div>
     <p style="font-size:12px;color:rgba(255,255,255,0.2);margin-top:20px">14 giorni soddisfatti o rimborsati &bull; Accesso dal 1° giugno &bull; Fattura disponibile</p>
+
+    <!-- MINI COUNTDOWN HERO -->
+    <div style="margin-top:28px;display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;background:rgba(0,0,0,0.35);border:1px solid rgba(212,175,55,0.2);border-radius:16px;padding:14px 24px">
+      <span style="font-size:12px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:2px">Offerta finisce in</span>
+      <div style="display:flex;gap:6px;align-items:center">
+        <div style="text-align:center">
+          <span id="cd2-days" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#D4AF37">--</span>
+          <span style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:2px">g</span>
+        </div>
+        <span style="color:rgba(212,175,55,0.4);font-size:18px">:</span>
+        <div style="text-align:center">
+          <span id="cd2-hours" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#D4AF37">--</span>
+          <span style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:2px">h</span>
+        </div>
+        <span style="color:rgba(212,175,55,0.4);font-size:18px">:</span>
+        <div style="text-align:center">
+          <span id="cd2-mins" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#D4AF37">--</span>
+          <span style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:2px">m</span>
+        </div>
+        <span style="color:rgba(212,175,55,0.4);font-size:18px">:</span>
+        <div style="text-align:center">
+          <span id="cd2-secs" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#D4AF37">--</span>
+          <span style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:2px">s</span>
+        </div>
+      </div>
+      <span style="font-size:12px;color:rgba(255,255,255,0.35)">poi <strong style="color:rgba(255,255,255,0.6)">€297</strong></span>
+    </div>
   </div>
 </div>
 
@@ -739,12 +766,17 @@ function toggleFaq(btn){
   var hEl=document.getElementById('cd-hours');
   var mEl=document.getElementById('cd-mins');
   var sEl=document.getElementById('cd-secs');
+  var d2El=document.getElementById('cd2-days');
+  var h2El=document.getElementById('cd2-hours');
+  var m2El=document.getElementById('cd2-mins');
+  var s2El=document.getElementById('cd2-secs');
   function pad(n){return n<10?'0'+n:n}
   function tick(){
     var now=Date.now();
     var diff=deadline-now;
     if(diff<=0){
       dEl.textContent=hEl.textContent=mEl.textContent=sEl.textContent='00';
+      if(d2El) d2El.textContent=h2El.textContent=m2El.textContent=s2El.textContent='00';
       return;
     }
     var days=Math.floor(diff/86400000);
@@ -755,6 +787,10 @@ function toggleFaq(btn){
     hEl.textContent=pad(hours);
     mEl.textContent=pad(mins);
     sEl.textContent=pad(secs);
+    if(d2El) d2El.textContent=pad(days);
+    if(h2El) h2El.textContent=pad(hours);
+    if(m2El) m2El.textContent=pad(mins);
+    if(s2El) s2El.textContent=pad(secs);
   }
   tick();
   setInterval(tick,1000);
