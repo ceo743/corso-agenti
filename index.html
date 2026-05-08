@@ -22,6 +22,11 @@
 
     .gold{background:linear-gradient(135deg,#BF953F 0%,#FCF6BA 25%,#B38728 50%,#FBF5B7 75%,#AA771C 100%);background-size:400% 400%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:goldShimmer 6s ease infinite}
     @keyframes goldShimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes goldTextShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+    .h1-line1{display:block;opacity:0;animation:fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.1s forwards}
+    .h1-line2{display:block;opacity:0;animation:fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.35s forwards}
+    .gold-animated{background:linear-gradient(90deg,#D4AF37 0%,#FCF6BA 30%,#D4AF37 50%,#BF953F 70%,#FCF6BA 85%,#D4AF37 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:goldTextShimmer 3s ease infinite}
 
     .btn-gold{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:22px 56px;background:linear-gradient(135deg,#e0a830,#F5C842,#e0a830);color:#080b10;font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:2.5px;border:none;border-radius:60px;text-decoration:none;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;font-family:'Inter',sans-serif;box-shadow:0 0 40px rgba(212,175,55,0.7),0 0 80px rgba(212,175,55,0.3),0 8px 32px rgba(0,0,0,0.4);-webkit-text-fill-color:#080b10;animation:btnPulse 2.5s ease-in-out infinite}
     .btn-gold::before{content:'';position:absolute;inset:-2px;background:linear-gradient(135deg,#FCF6BA,#D4AF37,#BF953F,#FCF6BA);background-size:300% 300%;border-radius:60px;z-index:-1;animation:goldShimmer 3s ease infinite;filter:blur(10px);opacity:0.6;transition:opacity 0.4s}
@@ -192,7 +197,7 @@
       <span class="badge" style="background:rgba(212,175,55,0.12);border-color:rgba(212,175,55,0.4)">&#128197; Accesso dal 18 maggio</span>
     </div>
     <h1 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5.5vw,78px);font-weight:900;line-height:1.08;margin-bottom:24px;letter-spacing:-1px">
-      Smetti di lavorare per l&rsquo;AI.<br>Falla <span class="gold">lavorare per te.</span>
+      <span class="h1-line1">Smetti di lavorare per l&rsquo;AI.</span><span class="h1-line2">Falla <span class="gold gold-animated">lavorare per te.</span></span>
     </h1>
     <p style="font-size:clamp(17px,1.6vw,22px);color:rgba(255,255,255,0.5);line-height:1.8;font-weight:300;max-width:720px;margin:0 auto 40px">
       6 moduli pratici per costruire il tuo Agente AI con Claude Code. Zero codice, zero esperienza tecnica. Accesso completo dal 18 maggio.
