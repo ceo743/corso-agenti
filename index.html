@@ -28,11 +28,11 @@
     .h1-line2{display:block;opacity:0;animation:fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.35s forwards}
     .gold-animated{background:linear-gradient(90deg,#D4AF37 0%,#FCF6BA 30%,#D4AF37 50%,#BF953F 70%,#FCF6BA 85%,#D4AF37 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:goldTextShimmer 3s ease infinite}
 
-    .btn-gold{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:22px 56px;background:linear-gradient(135deg,#e0a830,#F5C842,#e0a830);color:#080b10;font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:2.5px;border:none;border-radius:60px;text-decoration:none;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;font-family:'Inter',sans-serif;box-shadow:0 0 40px rgba(212,175,55,0.7),0 0 80px rgba(212,175,55,0.3),0 8px 32px rgba(0,0,0,0.4);-webkit-text-fill-color:#080b10;animation:btnPulse 2.5s ease-in-out infinite}
-    .btn-gold::before{content:'';position:absolute;inset:-2px;background:linear-gradient(135deg,#FCF6BA,#D4AF37,#BF953F,#FCF6BA);background-size:300% 300%;border-radius:60px;z-index:-1;animation:goldShimmer 3s ease infinite;filter:blur(10px);opacity:0.6;transition:opacity 0.4s}
-    .btn-gold:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 0 60px rgba(212,175,55,0.9),0 0 120px rgba(212,175,55,0.4),0 16px 48px rgba(0,0,0,0.5);animation:none}
-    .btn-gold:hover::before{opacity:1}
-    @keyframes btnPulse{0%,100%{box-shadow:0 0 40px rgba(212,175,55,0.7),0 0 80px rgba(212,175,55,0.3),0 8px 32px rgba(0,0,0,0.4)}50%{box-shadow:0 0 60px rgba(212,175,55,0.9),0 0 120px rgba(212,175,55,0.5),0 8px 32px rgba(0,0,0,0.4)}}
+    .btn-gold{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:22px 56px;background:linear-gradient(135deg,#c9962f,#D4AF37,#c9962f);color:#080b10;font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:2.5px;border:none;border-radius:60px;text-decoration:none;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;font-family:'Inter',sans-serif;box-shadow:0 0 20px rgba(212,175,55,0.35),0 8px 24px rgba(0,0,0,0.4);-webkit-text-fill-color:#080b10;animation:btnPulse 3s ease-in-out infinite}
+    .btn-gold::before{content:'';position:absolute;inset:-2px;background:linear-gradient(135deg,#FCF6BA,#D4AF37,#BF953F,#FCF6BA);background-size:300% 300%;border-radius:60px;z-index:-1;animation:goldShimmer 4s ease infinite;filter:blur(8px);opacity:0;transition:opacity 0.5s}
+    .btn-gold:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 0 36px rgba(212,175,55,0.55),0 16px 40px rgba(0,0,0,0.5);animation:none}
+    .btn-gold:hover::before{opacity:0.7}
+    @keyframes btnPulse{0%,100%{box-shadow:0 0 16px rgba(212,175,55,0.3),0 8px 24px rgba(0,0,0,0.4)}50%{box-shadow:0 0 28px rgba(212,175,55,0.5),0 8px 24px rgba(0,0,0,0.4)}}
     .btn-gold span{position:relative;z-index:1}
 
     .btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:18px 44px;background:transparent;color:#D4AF37;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:2px;border:1px solid rgba(212,175,55,0.35);border-radius:60px;text-decoration:none;transition:all 0.4s;font-family:'Inter',sans-serif}
