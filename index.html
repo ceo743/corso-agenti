@@ -326,89 +326,215 @@
     <p style="text-align:center;font-size:14px;color:#D4AF37;margin-bottom:48px;letter-spacing:0.5px">&#128197; Tutti i 6 moduli disponibili dal 18 maggio</p>
     <div style="display:flex;flex-direction:column;gap:16px">
 
-      <div class="module-card">
-        <div class="module-num"><span class="gold">01</span></div>
-        <div>
-          <p style="font-weight:700;font-size:17px;margin-bottom:8px">Introduzione e Logica</p>
-          <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Cos&rsquo;è un agente AI e perché è diverso da ChatGPT. Cosa automatizzare da subito: tutto quello che ripeti ogni settimana. Come scaricare e installare l&rsquo;app desktop. Sicurezza, cosa stai dando in mano alla macchina. Come gestire tutto dal cellulare senza aprire il laptop.</p>
-          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">7 lezioni</span>
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">App desktop inclusa</span>
+      <!-- MOD 01 -->
+      <div class="module-card module-acc" onclick="toggleModuleAcc(this)" style="cursor:pointer;flex-direction:column;align-items:stretch;padding:0;gap:0">
+        <div style="display:flex;gap:24px;align-items:flex-start;padding:28px 32px">
+          <div class="module-num"><span class="gold">01</span></div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+              <div style="flex:1">
+                <p style="font-weight:700;font-size:17px;margin-bottom:8px">Introduzione e Logica</p>
+                <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Cos&rsquo;è l&rsquo;AI che agisce e perché è diversa da ChatGPT. Cosa automatizzare da subito. Come installare l&rsquo;app desktop e lavorare anche dal cellulare.</p>
+                <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">7 lezioni</span>
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">App desktop inclusa</span>
+                </div>
+              </div>
+              <div class="module-acc-icon" style="flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;color:#D4AF37;transition:transform 0.3s;margin-top:2px">+</div>
+            </div>
+          </div>
+        </div>
+        <div class="module-acc-body" style="max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1)">
+          <div style="padding:0 32px 28px calc(32px + 44px + 24px);border-top:1px solid rgba(255,255,255,0.05)">
+            <div style="padding-top:20px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Chatbot vs AI che agisce: non risponde meglio, fa le cose al posto tuo</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Cosa automatizzare da domani: tutto quello che fai in modo ripetitivo</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Scarica e installa l&rsquo;app desktop</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Sicurezza: cosa stai dando in mano alla macchina</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Chat vs Cowork vs Code: quando usare cosa</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Dispatch: lavora da cellulare</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">L&rsquo;app e i suoi aggiornamenti: come restare sempre al passo</p></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="module-card">
-        <div class="module-num"><span class="gold">02</span></div>
-        <div>
-          <p style="font-weight:700;font-size:17px;margin-bottom:8px">Il Mindset</p>
-          <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Non devi sapere come si fa per delegare: lasciati guidare. Come parlare all&rsquo;AI per ottenere esattamente quello che vuoi. Come correggere il risultato senza ricominciare da capo: l&rsquo;AI ricorda tutto.</p>
-          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">3 lezioni</span>
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Framework pratico</span>
+      <!-- MOD 02 -->
+      <div class="module-card module-acc" onclick="toggleModuleAcc(this)" style="cursor:pointer;flex-direction:column;align-items:stretch;padding:0;gap:0">
+        <div style="display:flex;gap:24px;align-items:flex-start;padding:28px 32px">
+          <div class="module-num"><span class="gold">02</span></div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+              <div style="flex:1">
+                <p style="font-weight:700;font-size:17px;margin-bottom:8px">Il Mindset</p>
+                <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Non devi sapere come si fa per delegare: lasciati guidare. Come parlare all&rsquo;AI per ottenere esattamente quello che vuoi. Come correggere senza ricominciare da capo.</p>
+                <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">3 lezioni</span>
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Framework pratico</span>
+                </div>
+              </div>
+              <div class="module-acc-icon" style="flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;color:#D4AF37;transition:transform 0.3s;margin-top:2px">+</div>
+            </div>
+          </div>
+        </div>
+        <div class="module-acc-body" style="max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1)">
+          <div style="padding:0 32px 28px calc(32px + 44px + 24px);border-top:1px solid rgba(255,255,255,0.05)">
+            <div style="padding-top:20px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Non fare nulla a mano: lasciati guidare. Non devi sapere esattamente come si fa per delegare</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Come parlare all&rsquo;AI: i 3 elementi (contesto, compito preciso, formato output) e come lasciare che faccia lui</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Come correggere senza ricominciare da capo: l&rsquo;AI ricorda (quasi) tutto</p></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="module-card">
-        <div class="module-num"><span class="gold">03</span></div>
-        <div>
-          <p style="font-weight:700;font-size:17px;margin-bottom:8px">Setup</p>
-          <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">La cartella Drive come memoria permanente. Le Competenze: insegnagli chi sei, il tuo stile, come scrivi. I Connettori: collega Gmail, il calendario, gli strumenti che già usi. I Plugin: aggiungi funzioni extra quando ti servono.</p>
-          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">4 lezioni</span>
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Setup guidato</span>
+      <!-- MOD 03 -->
+      <div class="module-card module-acc" onclick="toggleModuleAcc(this)" style="cursor:pointer;flex-direction:column;align-items:stretch;padding:0;gap:0">
+        <div style="display:flex;gap:24px;align-items:flex-start;padding:28px 32px">
+          <div class="module-num"><span class="gold">03</span></div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+              <div style="flex:1">
+                <p style="font-weight:700;font-size:17px;margin-bottom:8px">Setup</p>
+                <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">La cartella Drive come memoria permanente. Le Competenze e i Connettori: insegnagli chi sei e collega gli strumenti che già usi. I Plugin: aggiungi funzioni extra.</p>
+                <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">4 lezioni</span>
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Setup guidato</span>
+                </div>
+              </div>
+              <div class="module-acc-icon" style="flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;color:#D4AF37;transition:transform 0.3s;margin-top:2px">+</div>
+            </div>
+          </div>
+        </div>
+        <div class="module-acc-body" style="max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1)">
+          <div style="padding:0 32px 28px calc(32px + 44px + 24px);border-top:1px solid rgba(255,255,255,0.05)">
+            <div style="padding-top:20px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">La cartella Drive: la memoria permanente dell&rsquo;AI (perché tutto va lì)</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Le Competenze: insegnagli chi sei, il tuo stile, Gmail, post social, stile grafico</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">I Connettori: collega gli strumenti che già usi</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">I Plugin: aggiungi superpoteri all&rsquo;AI</p></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="module-card">
-        <div class="module-num"><span class="gold">04</span></div>
-        <div>
-          <p style="font-weight:700;font-size:17px;margin-bottom:8px">Automazione</p>
-          <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Come creare le Routines: task che si avviano con un click, una volta sola. Gli Scheduled: attività che partono da sole mentre sei offline, ogni giorno alla stessa ora. Come controllare all&rsquo;inizio finché non ti fidi completamente.</p>
-          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">2 lezioni</span>
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Lavora mentre sei offline</span>
+      <!-- MOD 04 -->
+      <div class="module-card module-acc" onclick="toggleModuleAcc(this)" style="cursor:pointer;flex-direction:column;align-items:stretch;padding:0;gap:0">
+        <div style="display:flex;gap:24px;align-items:flex-start;padding:28px 32px">
+          <div class="module-num"><span class="gold">04</span></div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+              <div style="flex:1">
+                <p style="font-weight:700;font-size:17px;margin-bottom:8px">Automazione</p>
+                <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Come creare attività che partono da sole, ogni giorno alla stessa ora, senza che tu faccia nulla. Come controllare i risultati finché non ti fidi completamente.</p>
+                <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">2 lezioni</span>
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Lavora mentre sei offline</span>
+                </div>
+              </div>
+              <div class="module-acc-icon" style="flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;color:#D4AF37;transition:transform 0.3s;margin-top:2px">+</div>
+            </div>
+          </div>
+        </div>
+        <div class="module-acc-body" style="max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1)">
+          <div style="padding:0 32px 28px calc(32px + 44px + 24px);border-top:1px solid rgba(255,255,255,0.05)">
+            <div style="padding-top:20px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Come creare le Routines e gli Scheduled: attività che si avviano da sole, ogni giorno, senza che tu tocchi nulla</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">L&rsquo;importanza di controllare: all&rsquo;inizio è obbligo, poi diventa fiducia</p></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="module-card">
-        <div class="module-num"><span class="gold">05</span></div>
-        <div>
-          <p style="font-weight:700;font-size:17px;margin-bottom:8px">Le Skill</p>
-          <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Cosa sono le Skill e come funzionano. Installa le 35 Skill Marketing già pronte in 2 minuti. Crea le tue skill personalizzate da zero o spezzetta quelle complesse: esempio pratico con un funnel completo.</p>
-          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">3 lezioni</span>
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">35 Skill incluse</span>
+      <!-- MOD 05 -->
+      <div class="module-card module-acc" onclick="toggleModuleAcc(this)" style="cursor:pointer;flex-direction:column;align-items:stretch;padding:0;gap:0">
+        <div style="display:flex;gap:24px;align-items:flex-start;padding:28px 32px">
+          <div class="module-num"><span class="gold">05</span></div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+              <div style="flex:1">
+                <p style="font-weight:700;font-size:17px;margin-bottom:8px">Le Skill</p>
+                <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Cosa sono le Skill e come funzionano. Installa le 35 Skill Marketing già pronte in 2 minuti. Crea le tue da zero o adatta quelle esistenti al tuo caso specifico.</p>
+                <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">3 lezioni</span>
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">35 Skill incluse</span>
+                </div>
+              </div>
+              <div class="module-acc-icon" style="flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;color:#D4AF37;transition:transform 0.3s;margin-top:2px">+</div>
+            </div>
+          </div>
+        </div>
+        <div class="module-acc-body" style="max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1)">
+          <div style="padding:0 32px 28px calc(32px + 44px + 24px);border-top:1px solid rgba(255,255,255,0.05)">
+            <div style="padding-top:20px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Cosa sono le Skill e come installare le 35 Skill Marketing (libreria pronta)</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Come creare una Skill da zero</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Come spezzettare una Skill complessa: esempio pratico con il funnel guida PDF</p></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="module-card">
-        <div class="module-num"><span class="gold">06</span></div>
-        <div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-            <p style="font-weight:700;font-size:17px">Casi d&rsquo;uso Reali</p>
-            <span style="font-size:10px;padding:3px 10px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.2);border-radius:20px;color:#D4AF37;text-transform:uppercase;letter-spacing:1px">Dal 18 maggio</span>
+      <!-- MOD 06 -->
+      <div class="module-card module-acc" onclick="toggleModuleAcc(this)" style="cursor:pointer;flex-direction:column;align-items:stretch;padding:0;gap:0">
+        <div style="display:flex;gap:24px;align-items:flex-start;padding:28px 32px">
+          <div class="module-num"><span class="gold">06</span></div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+              <div style="flex:1">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                  <p style="font-weight:700;font-size:17px">Casi d&rsquo;uso Reali</p>
+                  <span style="font-size:10px;padding:3px 10px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.2);border-radius:20px;color:#D4AF37;text-transform:uppercase;letter-spacing:1px">Dal 18 maggio</span>
+                </div>
+                <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Cinque sistemi reali già attivi su DC Academy: li vedi dall&rsquo;interno e costruisci i tuoi partendo da lì.</p>
+                <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">5 lezioni</span>
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Casi reali DC Academy</span>
+                </div>
+              </div>
+              <div class="module-acc-icon" style="flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;color:#D4AF37;transition:transform 0.3s;margin-top:2px">+</div>
+            </div>
           </div>
-          <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Il DC Chatbot che risponde ai visitatori del sito. Stefania, la setter AI che prenota appuntamenti in autonomia. Il report mensile automatico. Script e descrizioni Reel. La dashboard Sales e Marketing.</p>
-          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">5 lezioni</span>
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Casi reali DC Academy</span>
+        </div>
+        <div class="module-acc-body" style="max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1)">
+          <div style="padding:0 32px 28px calc(32px + 44px + 24px);border-top:1px solid rgba(255,255,255,0.05)">
+            <div style="padding-top:20px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Il chatbot: DC Chatbot in produzione</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Stefania, l&rsquo;AI che prenota appuntamenti in autonomia</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Report mensile outsourcing: generato in automatico ogni mese</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Creazione di script e descrizione Reel con l&rsquo;AI</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Dashboard Sales e Marketing</p></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="module-card" style="border-color:rgba(212,175,55,0.12);background:rgba(212,175,55,0.03)">
-        <div class="module-num"><span class="gold" style="font-size:22px;letter-spacing:1px">+</span></div>
-        <div>
-          <p style="font-weight:700;font-size:17px;margin-bottom:8px">Bonus</p>
-          <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Il check periodico delle cartelle. Sonnet vs Opus: quale usare e quando. Cosa sono le API (spiegato semplice, senza tecnicismi). Video Canva per la grafica.</p>
-          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">4 video bonus</span>
-            <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Inclusi nel corso</span>
+      <!-- BONUS -->
+      <div class="module-card module-acc" onclick="toggleModuleAcc(this)" style="cursor:pointer;flex-direction:column;align-items:stretch;padding:0;gap:0;border-color:rgba(212,175,55,0.12);background:rgba(212,175,55,0.03)">
+        <div style="display:flex;gap:24px;align-items:flex-start;padding:28px 32px">
+          <div class="module-num"><span class="gold" style="font-size:22px;letter-spacing:1px">+</span></div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+              <div style="flex:1">
+                <p style="font-weight:700;font-size:17px;margin-bottom:8px">Bonus</p>
+                <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7">Quattro video extra inclusi nel corso: dalla gestione dei costi alle spiegazioni semplici di concetti tecnici.</p>
+                <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">4 video bonus</span>
+                  <span style="font-size:11px;padding:4px 10px;background:rgba(212,175,55,0.08);border-radius:20px;color:#D4AF37">Inclusi nel corso</span>
+                </div>
+              </div>
+              <div class="module-acc-icon" style="flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;color:#D4AF37;transition:transform 0.3s;margin-top:2px">+</div>
+            </div>
+          </div>
+        </div>
+        <div class="module-acc-body" style="max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1)">
+          <div style="padding:0 32px 28px calc(32px + 44px + 24px);border-top:1px solid rgba(212,175,55,0.08)">
+            <div style="padding-top:20px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Il check periodico delle cartelle: &ldquo;Sistema tutto e dimmi cosa hai cambiato&rdquo;</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Prezzi: Sonnet vs Opus, quale usare e quando</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Cosa sono le API: spiegato semplice, senza tecnicismi</p></div>
+              <div style="display:flex;align-items:flex-start;gap:10px"><div style="flex-shrink:0;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);display:flex;align-items:center;justify-content:center"><svg width="6" height="8" viewBox="0 0 6 8" fill="#D4AF37"><path d="M0 0l6 4-6 4V0z"/></svg></div><p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6">Video Canva: come usare l&rsquo;AI per la grafica</p></div>
+            </div>
           </div>
         </div>
       </div>
@@ -958,6 +1084,23 @@ function toggleFaq(btn){
   tick();
   setInterval(tick,1000);
 })();
+</script>
+
+<script>
+function toggleModuleAcc(card) {
+  var body = card.querySelector('.module-acc-body');
+  var icon = card.querySelector('.module-acc-icon');
+  var isOpen = card.classList.contains('open');
+  if (isOpen) {
+    body.style.maxHeight = '0';
+    icon.style.transform = '';
+    card.classList.remove('open');
+  } else {
+    body.style.maxHeight = body.scrollHeight + 'px';
+    icon.style.transform = 'rotate(45deg)';
+    card.classList.add('open');
+  }
+}
 </script>
 
 <script>
