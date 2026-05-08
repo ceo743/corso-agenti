@@ -23,6 +23,7 @@
     .gold{background:linear-gradient(135deg,#BF953F 0%,#FCF6BA 25%,#B38728 50%,#FBF5B7 75%,#AA771C 100%);background-size:400% 400%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:goldShimmer 6s ease infinite}
     @keyframes goldShimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
     @keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
     @keyframes goldTextShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
     .h1-line1{display:block;opacity:0;animation:fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.1s forwards}
     .h1-line2{display:block;opacity:0;animation:fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.35s forwards}
@@ -197,7 +198,7 @@
       <span class="badge" style="background:rgba(212,175,55,0.12);border-color:rgba(212,175,55,0.4)">&#128197; Accesso dal 18 maggio</span>
     </div>
     <h1 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5.5vw,78px);font-weight:900;line-height:1.08;margin-bottom:24px;letter-spacing:-1px">
-      <span class="h1-line1">Smetti di chiedere all&rsquo;AI.</span><span class="h1-line2">Falla <span class="gold gold-animated">lavorare per te.</span></span>
+      <span class="h1-line1">Smetti di <span id="typewriter-text">chiedere all'AI.</span><span id="typewriter-cursor" style="display:inline-block;width:3px;background:#fff;margin-left:2px;animation:cursorBlink 0.7s step-end infinite;vertical-align:baseline;height:0.85em;border-radius:1px"></span></span><span class="h1-line2">Falla <span class="gold gold-animated">lavorare per te.</span></span>
     </h1>
     <p style="font-size:clamp(17px,1.6vw,22px);color:rgba(255,255,255,0.5);line-height:1.8;font-weight:300;max-width:720px;margin:0 auto 40px">
       6 moduli pratici per automatizzare il tuo lavoro con Claude Code. Report, email, contenuti, ricerche: li fa l&rsquo;AI mentre tu fai altro. Zero codice.
@@ -912,6 +913,51 @@ function toggleFaq(btn){
 })();
 </script>
 
+<script>
+(function(){
+  var phrases = ["chiedere all'AI.","copiare e incollare da ChatGPT.","farti correggere dall'AI.","fare le stesse cose."];
+  var el = document.getElementById('typewriter-text');
+  var cursor = document.getElementById('typewriter-cursor');
+  if(!el) return;
+  var idx = 0;
+  var charIdx = 0;
+  var deleting = false;
+  var PAUSE_AFTER = 2200;
+  var PAUSE_BEFORE = 400;
+  var TYPE_SPEED = 55;
+  var DELETE_SPEED = 28;
+  var timer;
+
+  function tick(){
+    var phrase = phrases[idx];
+    if(!deleting){
+      el.textContent = phrase.slice(0, charIdx + 1);
+      charIdx++;
+      if(charIdx === phrase.length){
+        deleting = true;
+        timer = setTimeout(tick, PAUSE_AFTER);
+        return;
+      }
+      timer = setTimeout(tick, TYPE_SPEED);
+    } else {
+      el.textContent = phrase.slice(0, charIdx - 1);
+      charIdx--;
+      if(charIdx === 0){
+        deleting = false;
+        idx = (idx + 1) % phrases.length;
+        timer = setTimeout(tick, PAUSE_BEFORE);
+        return;
+      }
+      timer = setTimeout(tick, DELETE_SPEED);
+    }
+  }
+
+  // Prima frase già visibile, aspetta poi inizia a cancellare
+  charIdx = phrases[0].length;
+  deleting = true;
+  timer = setTimeout(tick, PAUSE_AFTER);
+})();
+</script>
 <!-- Chatbot DC Academy -->
 <script src="https://dc-chatbot-production.up.railway.app/static/widget.js" defer></script>
 <link rel="stylesheet" href="https://dc-chatbot-production.up.railway.app/static/widget.css"/>
