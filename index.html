@@ -349,6 +349,50 @@
 </div>
 
 <!-- =========================================
+     EVENTI / PALCHI
+     ========================================= -->
+<style>
+  @keyframes scrollEventi{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .eventi-ticker{display:flex;width:max-content;animation:scrollEventi 70s linear infinite;align-items:center}
+  .eventi-ticker:hover{animation-play-state:paused}
+  .eventi-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:rgba(255,255,255,0.4);white-space:nowrap;padding:0 36px;transition:color 0.3s;font-style:italic}
+  .eventi-name:hover{color:rgba(255,255,255,0.75)}
+  .eventi-dot{color:rgba(212,175,55,0.4);font-size:14px;flex-shrink:0}
+</style>
+<div style="background:rgba(212,175,55,0.02);border-top:1px solid rgba(212,175,55,0.07);border-bottom:1px solid rgba(212,175,55,0.07);padding:clamp(32px,4vw,48px) 0;position:relative;z-index:2">
+  <p class="section-label" style="text-align:center;margin-bottom:20px">Dove sono stato</p>
+  <div style="position:relative">
+    <div style="position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(to right,#080b10,transparent);z-index:5;pointer-events:none"></div>
+    <div style="position:absolute;right:0;top:0;bottom:0;width:120px;background:linear-gradient(to left,#080b10,transparent);z-index:5;pointer-events:none"></div>
+    <div style="overflow:hidden;padding:8px 0">
+      <div class="eventi-ticker">
+        <span class="eventi-name">Senato della Repubblica</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">Camera dei Deputati</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">TEDx Cagliari</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">TEDx Lerici</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">Rotary Club</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">Confindustria</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">World Legal Summit</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">Unindustria</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">We&rsquo;re Open</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">Il Sole 24 Ore Events</span><span class="eventi-dot">✦</span>
+        <!-- DUPLICATE -->
+        <span class="eventi-name">Senato della Repubblica</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">Camera dei Deputati</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">TEDx Cagliari</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">TEDx Lerici</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">Rotary Club</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">Confindustria</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">World Legal Summit</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">Unindustria</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">We&rsquo;re Open</span><span class="eventi-dot">✦</span>
+        <span class="eventi-name">Il Sole 24 Ore Events</span><span class="eventi-dot">✦</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================
      PROBLEMA
      ========================================= -->
 <div class="section">
