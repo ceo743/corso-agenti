@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>TikTok OAuth Callback</title></head>
+<body>
+<h2>Autorizzazione completata. Puoi chiudere questa scheda.</h2>
+<script>
+// This page handles the TikTok OAuth redirect
+// The local Python script running on port 8080 will capture the code
+window.location.href = 'http://localhost:8080/callback' + window.location.search;
+</script>
+</body>
+</html>
