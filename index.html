@@ -248,31 +248,104 @@
      CLIENTI
      ========================================= -->
 <style>
-  .clienti-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:900px;margin:0 auto}
-  .clienti-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:20px 12px;text-align:center;font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.45);letter-spacing:0.3px;transition:border-color 0.3s,color 0.3s;text-decoration:none;display:block}
-  .clienti-card:hover{border-color:rgba(212,175,55,0.3);color:rgba(255,255,255,0.75)}
-  @media(max-width:600px){.clienti-grid{grid-template-columns:repeat(2,1fr)}}
+  @keyframes scrollClienti{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .clienti-ticker-wrap{position:relative;overflow:hidden;padding:28px 0}
+  .clienti-ticker{display:flex;width:max-content;animation:scrollClienti 40s linear infinite;align-items:center;gap:0}
+  .clienti-ticker:hover{animation-play-state:paused}
+  .clienti-name{font-family:'Inter',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.3);white-space:nowrap;padding:0 28px;transition:color 0.3s}
+  .clienti-name:hover{color:rgba(255,255,255,0.7)}
+  .clienti-dot{color:rgba(212,175,55,0.35);font-size:10px;flex-shrink:0}
 </style>
-<div class="section" style="padding-bottom:clamp(40px,6vw,64px)">
-  <p class="section-label" style="text-align:center">Aziende con cui ho collaborato</p>
-  <h2 class="section-title" style="text-align:center;margin-bottom:40px">Tra i nostri <em class="gold">Clienti</em></h2>
-  <div class="clienti-grid">
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">BNL</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">AVIO</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">PwC</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">Hyundai</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">Liu·Jo</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">Swarovski</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">Confcommercio</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">Sky</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">Almaviva</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">Azimut Benetti</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">Cementir</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">CONI</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">Giochi Preziosi</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">Diasorin</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">KPMG</a>
-    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="clienti-card">Lavazza</a>
+<div style="background:rgba(255,255,255,0.01);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);position:relative;z-index:2">
+  <p class="section-label" style="text-align:center;padding-top:clamp(40px,5vw,56px)">Aziende con cui ho collaborato</p>
+  <h2 class="section-title" style="text-align:center;margin-bottom:32px">Tra i nostri <em class="gold">Clienti</em></h2>
+  <div style="position:relative">
+    <div style="position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(to right,#080b10,transparent);z-index:5;pointer-events:none"></div>
+    <div style="position:absolute;right:0;top:0;bottom:0;width:120px;background:linear-gradient(to left,#080b10,transparent);z-index:5;pointer-events:none"></div>
+    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" style="text-decoration:none;display:block">
+      <div class="clienti-ticker-wrap">
+        <div class="clienti-ticker">
+          <span class="clienti-name">Moncler</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Prada</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Swarovski</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Samsung</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Huawei</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">KPMG</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">PwC</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Santander</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">BNL BNP Paribas</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Mediobanca</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Heineken</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Mediaset</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Hyundai</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Colgate-Palmolive</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">GSK</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Liu·Jo</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">DiaSorin</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Cementir</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Schlumberger</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Avio</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Almaviva</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Azimut Benetti</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Giochi Preziosi</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Humanitas</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Bambino Gesù</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">CONI</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">SS Lazio</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Confcommercio</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Confindustria</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Q8</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">De Nora</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">OVS</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">NTT Data</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Servier</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Lavazza</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Sky</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">TimacAgro</span><span class="clienti-dot">◆</span>
+          <!-- DUPLICATE per loop -->
+          <span class="clienti-name">Moncler</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Prada</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Swarovski</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Samsung</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Huawei</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">KPMG</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">PwC</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Santander</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">BNL BNP Paribas</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Mediobanca</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Heineken</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Mediaset</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Hyundai</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Colgate-Palmolive</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">GSK</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Liu·Jo</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">DiaSorin</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Cementir</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Schlumberger</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Avio</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Almaviva</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Azimut Benetti</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Giochi Preziosi</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Humanitas</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Bambino Gesù</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">CONI</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">SS Lazio</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Confcommercio</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Confindustria</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Q8</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">De Nora</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">OVS</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">NTT Data</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Servier</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Lavazza</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">Sky</span><span class="clienti-dot">◆</span>
+          <span class="clienti-name">TimacAgro</span><span class="clienti-dot">◆</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div style="text-align:center;padding-bottom:clamp(40px,5vw,56px)">
+    <a href="https://www.davidecaiazzo.it/alcuni-miei-clienti" target="_blank" rel="noopener" class="btn-outline" style="font-size:12px;padding:14px 32px">Vedi tutti i clienti &rarr;</a>
   </div>
 </div>
 
