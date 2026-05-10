@@ -245,6 +245,39 @@
 </div>
 
 <!-- =========================================
+     CLIENTI
+     ========================================= -->
+<style>
+  .clienti-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:900px;margin:0 auto}
+  .clienti-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:20px 12px;text-align:center;font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.45);letter-spacing:0.3px;transition:border-color 0.3s,color 0.3s}
+  .clienti-card:hover{border-color:rgba(212,175,55,0.3);color:rgba(255,255,255,0.75)}
+  .clienti-card.gold{background:rgba(212,175,55,0.06);border:1px solid rgba(212,175,55,0.35);color:#D4AF37}
+  @media(max-width:600px){.clienti-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+<div class="section" style="padding-bottom:clamp(40px,6vw,64px)">
+  <p class="section-label" style="text-align:center">Aziende con cui ho collaborato</p>
+  <h2 class="section-title" style="text-align:center;margin-bottom:40px">Tra i nostri <em class="gold">Clienti</em></h2>
+  <div class="clienti-grid">
+    <div class="clienti-card">BNL</div>
+    <div class="clienti-card">AVIO</div>
+    <div class="clienti-card gold">PwC</div>
+    <div class="clienti-card">Hyundai</div>
+    <div class="clienti-card">Liu·Jo</div>
+    <div class="clienti-card">Swarovski</div>
+    <div class="clienti-card">Confcommercio</div>
+    <div class="clienti-card">Sky</div>
+    <div class="clienti-card">Almaviva</div>
+    <div class="clienti-card">Azimut Benetti</div>
+    <div class="clienti-card">Cementir</div>
+    <div class="clienti-card">CONI</div>
+    <div class="clienti-card">Giochi Preziosi</div>
+    <div class="clienti-card">Diasorin</div>
+    <div class="clienti-card">KPMG</div>
+    <div class="clienti-card">Lavazza</div>
+  </div>
+</div>
+
+<!-- =========================================
      PROBLEMA
      ========================================= -->
 <div class="section">
@@ -849,19 +882,12 @@
     <div style="padding:12px 0 20px">
       <div class="press-track">
 
+        <!-- Ordine: Sole24(1) → Vanity Fair → Il Tempo → Sole24(2) → Affaritaliani → Leggo -->
         <a href="https://ntplusdiritto.ilsole24ore.com/art/zucchetti-acquisisce-my-governance-valutazione-oltre-10-milioni-caiazzo-confermato-ad-AHraItpC" target="_blank" rel="noopener" class="press-card">
           <img src="img/press/press-1.jpg" alt="Il Sole 24 Ore" class="press-card-img">
           <div class="press-card-body">
             <p class="press-card-label">Il Sole 24 Ore</p>
             <p class="press-card-title">Zucchetti acquisisce My Governance: valutazione oltre 10 milioni, Caiazzo confermato AD</p>
-          </div>
-        </a>
-
-        <a href="https://ntplusdiritto.ilsole24ore.com/art/mygo-premiata-oscar-fintech-le-migliori-soluzioni-legaltech-e-compliance-AHqnuR9C" target="_blank" rel="noopener" class="press-card">
-          <img src="img/press/press-2.jpg" alt="Il Sole 24 Ore" class="press-card-img">
-          <div class="press-card-body">
-            <p class="press-card-label">Il Sole 24 Ore</p>
-            <p class="press-card-title">MYGO premiata agli Oscar del FinTech per le migliori soluzioni LegalTech e Compliance</p>
           </div>
         </a>
 
@@ -873,19 +899,27 @@
           </div>
         </a>
 
-        <a href="https://www.affaritaliani.it/mediatech/davide-caiazzo-vi-svelo-i-miei-segreti-sul-personal-branding-803312.html" target="_blank" rel="noopener" class="press-card">
-          <img src="img/press/press-4.jpg" alt="Affaritaliani" class="press-card-img">
-          <div class="press-card-body">
-            <p class="press-card-label">Affaritaliani</p>
-            <p class="press-card-title">Davide Caiazzo, il Re di LinkedIn: &ldquo;Vi svelo i segreti del Personal Branding&rdquo;</p>
-          </div>
-        </a>
-
         <a href="https://www.davidecaiazzo.it/parlano-di-me" target="_blank" rel="noopener" class="press-card">
           <img src="img/press/press-5.jpg" alt="Il Tempo" class="press-card-img">
           <div class="press-card-body">
             <p class="press-card-label">Il Tempo</p>
             <p class="press-card-title">Assegnato il premio &ldquo;Impresa Etica e Innovativa&rdquo; a Davide Caiazzo e Savino Novelli</p>
+          </div>
+        </a>
+
+        <a href="https://ntplusdiritto.ilsole24ore.com/art/mygo-premiata-oscar-fintech-le-migliori-soluzioni-legaltech-e-compliance-AHqnuR9C" target="_blank" rel="noopener" class="press-card">
+          <img src="img/press/press-2.jpg" alt="Il Sole 24 Ore" class="press-card-img">
+          <div class="press-card-body">
+            <p class="press-card-label">Il Sole 24 Ore</p>
+            <p class="press-card-title">MYGO premiata agli Oscar del FinTech per le migliori soluzioni LegalTech e Compliance</p>
+          </div>
+        </a>
+
+        <a href="https://www.affaritaliani.it/mediatech/davide-caiazzo-vi-svelo-i-miei-segreti-sul-personal-branding-803312.html" target="_blank" rel="noopener" class="press-card">
+          <img src="img/press/press-4.jpg" alt="Affaritaliani" class="press-card-img">
+          <div class="press-card-body">
+            <p class="press-card-label">Affaritaliani</p>
+            <p class="press-card-title">Davide Caiazzo, il Re di LinkedIn: &ldquo;Vi svelo i segreti del Personal Branding&rdquo;</p>
           </div>
         </a>
 
@@ -906,14 +940,6 @@
           </div>
         </a>
 
-        <a href="https://ntplusdiritto.ilsole24ore.com/art/mygo-premiata-oscar-fintech-le-migliori-soluzioni-legaltech-e-compliance-AHqnuR9C" target="_blank" rel="noopener" class="press-card">
-          <img src="img/press/press-2.jpg" alt="Il Sole 24 Ore" class="press-card-img">
-          <div class="press-card-body">
-            <p class="press-card-label">Il Sole 24 Ore</p>
-            <p class="press-card-title">MYGO premiata agli Oscar del FinTech per le migliori soluzioni LegalTech e Compliance</p>
-          </div>
-        </a>
-
         <a href="https://www.vanityfair.it/article/davide-caiazzo-consigli-linkedin" target="_blank" rel="noopener" class="press-card">
           <img src="img/press/press-3.jpg" alt="Vanity Fair" class="press-card-img">
           <div class="press-card-body">
@@ -922,19 +948,27 @@
           </div>
         </a>
 
-        <a href="https://www.affaritaliani.it/mediatech/davide-caiazzo-vi-svelo-i-miei-segreti-sul-personal-branding-803312.html" target="_blank" rel="noopener" class="press-card">
-          <img src="img/press/press-4.jpg" alt="Affaritaliani" class="press-card-img">
-          <div class="press-card-body">
-            <p class="press-card-label">Affaritaliani</p>
-            <p class="press-card-title">Davide Caiazzo, il Re di LinkedIn: &ldquo;Vi svelo i segreti del Personal Branding&rdquo;</p>
-          </div>
-        </a>
-
         <a href="https://www.davidecaiazzo.it/parlano-di-me" target="_blank" rel="noopener" class="press-card">
           <img src="img/press/press-5.jpg" alt="Il Tempo" class="press-card-img">
           <div class="press-card-body">
             <p class="press-card-label">Il Tempo</p>
             <p class="press-card-title">Assegnato il premio &ldquo;Impresa Etica e Innovativa&rdquo; a Davide Caiazzo e Savino Novelli</p>
+          </div>
+        </a>
+
+        <a href="https://ntplusdiritto.ilsole24ore.com/art/mygo-premiata-oscar-fintech-le-migliori-soluzioni-legaltech-e-compliance-AHqnuR9C" target="_blank" rel="noopener" class="press-card">
+          <img src="img/press/press-2.jpg" alt="Il Sole 24 Ore" class="press-card-img">
+          <div class="press-card-body">
+            <p class="press-card-label">Il Sole 24 Ore</p>
+            <p class="press-card-title">MYGO premiata agli Oscar del FinTech per le migliori soluzioni LegalTech e Compliance</p>
+          </div>
+        </a>
+
+        <a href="https://www.affaritaliani.it/mediatech/davide-caiazzo-vi-svelo-i-miei-segreti-sul-personal-branding-803312.html" target="_blank" rel="noopener" class="press-card">
+          <img src="img/press/press-4.jpg" alt="Affaritaliani" class="press-card-img">
+          <div class="press-card-body">
+            <p class="press-card-label">Affaritaliani</p>
+            <p class="press-card-title">Davide Caiazzo, il Re di LinkedIn: &ldquo;Vi svelo i segreti del Personal Branding&rdquo;</p>
           </div>
         </a>
 
