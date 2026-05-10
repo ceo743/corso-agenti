@@ -353,40 +353,38 @@
      ========================================= -->
 <style>
   @keyframes scrollEventi{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-  .eventi-ticker{display:flex;width:max-content;animation:scrollEventi 70s linear infinite;align-items:center}
-  .eventi-ticker:hover{animation-play-state:paused}
-  .eventi-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:rgba(255,255,255,0.4);white-space:nowrap;padding:0 36px;transition:color 0.3s;font-style:italic}
-  .eventi-name:hover{color:rgba(255,255,255,0.75)}
-  .eventi-dot{color:rgba(212,175,55,0.4);font-size:14px;flex-shrink:0}
+  .eventi-track{display:flex;gap:16px;width:max-content;animation:scrollEventi 36s linear infinite}
+  .eventi-track:hover{animation-play-state:paused}
+  .ev-card{width:280px;height:210px;flex-shrink:0;border-radius:16px;overflow:hidden;position:relative;display:block;text-decoration:none}
+  .ev-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s}
+  .ev-card:hover img{transform:scale(1.05)}
+  .ev-card-label{position:absolute;bottom:0;left:0;right:0;padding:28px 16px 14px;background:linear-gradient(to top,rgba(0,0,0,0.82),transparent);color:#fff;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;line-height:1.3}
 </style>
-<div style="background:rgba(212,175,55,0.02);border-top:1px solid rgba(212,175,55,0.07);border-bottom:1px solid rgba(212,175,55,0.07);padding:clamp(32px,4vw,48px) 0;position:relative;z-index:2">
-  <p class="section-label" style="text-align:center;margin-bottom:20px">Dove sono stato</p>
-  <div style="position:relative">
-    <div style="position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(to right,#080b10,transparent);z-index:5;pointer-events:none"></div>
-    <div style="position:absolute;right:0;top:0;bottom:0;width:120px;background:linear-gradient(to left,#080b10,transparent);z-index:5;pointer-events:none"></div>
-    <div style="overflow:hidden;padding:8px 0">
-      <div class="eventi-ticker">
-        <span class="eventi-name">Senato della Repubblica</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">Camera dei Deputati</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">TEDx Cagliari</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">TEDx Lerici</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">Rotary Club</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">Confindustria</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">World Legal Summit</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">Unindustria</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">We&rsquo;re Open</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">Il Sole 24 Ore Events</span><span class="eventi-dot">✦</span>
+<div class="section" style="padding-left:0;padding-right:0;max-width:none">
+  <p class="section-label" style="text-align:center;padding:0 20px">Dove sono stato</p>
+  <h2 class="section-title" style="text-align:center;margin-bottom:32px;padding:0 20px">Palchi e <em class="gold">Istituzioni</em></h2>
+  <div style="position:relative;overflow:hidden">
+    <div style="position:absolute;left:0;top:0;bottom:0;width:100px;background:linear-gradient(to right,#080b10,transparent);z-index:5;pointer-events:none"></div>
+    <div style="position:absolute;right:0;top:0;bottom:0;width:100px;background:linear-gradient(to left,#080b10,transparent);z-index:5;pointer-events:none"></div>
+    <div style="padding:12px 0 20px">
+      <div class="eventi-track">
+        <div class="ev-card"><img src="img/eventi/ev-1.jpg" alt="Camera dei Deputati"><div class="ev-card-label">Camera dei Deputati</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-2.jpg" alt="Confcommercio"><div class="ev-card-label">Confcommercio</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-3.jpg" alt="TEDx Lerici"><div class="ev-card-label">TEDx Lerici</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-4.jpg" alt="Autore Feltrinelli"><div class="ev-card-label">Autore Feltrinelli</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-5.jpg" alt="Autore Feltrinelli"><div class="ev-card-label">Autore Feltrinelli</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-6.jpg" alt="TEDx Cagliari"><div class="ev-card-label">TEDx Cagliari</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-7.jpg" alt="Senato della Repubblica"><div class="ev-card-label">Senato della Repubblica</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-8.jpg" alt="Premio Avvocatura dello Stato"><div class="ev-card-label">Premio · Avvocatura dello Stato</div></div>
         <!-- DUPLICATE -->
-        <span class="eventi-name">Senato della Repubblica</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">Camera dei Deputati</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">TEDx Cagliari</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">TEDx Lerici</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">Rotary Club</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">Confindustria</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">World Legal Summit</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">Unindustria</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">We&rsquo;re Open</span><span class="eventi-dot">✦</span>
-        <span class="eventi-name">Il Sole 24 Ore Events</span><span class="eventi-dot">✦</span>
+        <div class="ev-card"><img src="img/eventi/ev-1.jpg" alt="Camera dei Deputati"><div class="ev-card-label">Camera dei Deputati</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-2.jpg" alt="Confcommercio"><div class="ev-card-label">Confcommercio</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-3.jpg" alt="TEDx Lerici"><div class="ev-card-label">TEDx Lerici</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-4.jpg" alt="Autore Feltrinelli"><div class="ev-card-label">Autore Feltrinelli</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-5.jpg" alt="Autore Feltrinelli"><div class="ev-card-label">Autore Feltrinelli</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-6.jpg" alt="TEDx Cagliari"><div class="ev-card-label">TEDx Cagliari</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-7.jpg" alt="Senato della Repubblica"><div class="ev-card-label">Senato della Repubblica</div></div>
+        <div class="ev-card"><img src="img/eventi/ev-8.jpg" alt="Premio Avvocatura dello Stato"><div class="ev-card-label">Premio · Avvocatura dello Stato</div></div>
       </div>
     </div>
   </div>
