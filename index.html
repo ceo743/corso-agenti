@@ -114,9 +114,29 @@
   </style>
 <script type="text/javascript" charset="UTF-8" src="//cdn.cookie-script.com/s/5b24cef87a160ab3ee3c8e35c1c61ff9.js"></script>
 <style>
-  #cookiescript_manage_wrap{bottom:90px!important}
-  #cookiescript_injected{bottom:90px!important}
+  #cookiescript_manage_wrap,
+  #cookiescript_injected,
+  div[id^="cookiescript"],
+  div[class^="cookiescript"],
+  #cs-manage-btn-wrap,
+  .cs-manage-btn-wrap { bottom:90px!important; left:16px!important }
 </style>
+<script>
+(function(){
+  function fixCookie(){
+    var els = document.querySelectorAll('[id*="cookiescript"],[class*="cookiescript"],[id*="cs-manage"],[class*="cs-manage"]');
+    els.forEach(function(el){
+      var s = window.getComputedStyle(el);
+      if(s.position==='fixed' && (s.bottom!=='auto' || parseInt(s.bottom)<90)){
+        el.style.setProperty('bottom','90px','important');
+        el.style.setProperty('left','16px','important');
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', function(){setTimeout(fixCookie,1000);setTimeout(fixCookie,3000);});
+  window.addEventListener('load', function(){setTimeout(fixCookie,500);setTimeout(fixCookie,2000);});
+})();
+</script>
 </head>
 <body>
 
