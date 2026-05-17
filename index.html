@@ -156,21 +156,33 @@
   div[class^="cookiescript"],
   #cs-manage-btn-wrap,
   .cs-manage-btn-wrap { bottom:90px!important; left:16px!important }
+  @media(max-width:600px){
+    #cookiescript_manage_wrap,
+    #cookiescript_injected,
+    div[id^="cookiescript"],
+    div[class^="cookiescript"],
+    #cs-manage-btn-wrap,
+    .cs-manage-btn-wrap { bottom:160px!important; left:16px!important }
+  }
 </style>
 <script>
 (function(){
   function fixCookie(){
+    var bar = document.getElementById('floatBar');
+    var barH = bar ? bar.offsetHeight : 90;
+    var offset = barH + 12;
     var els = document.querySelectorAll('[id*="cookiescript"],[class*="cookiescript"],[id*="cs-manage"],[class*="cs-manage"]');
     els.forEach(function(el){
       var s = window.getComputedStyle(el);
-      if(s.position==='fixed' && (s.bottom!=='auto' || parseInt(s.bottom)<90)){
-        el.style.setProperty('bottom','90px','important');
+      if(s.position==='fixed'){
+        el.style.setProperty('bottom', offset+'px', 'important');
         el.style.setProperty('left','16px','important');
       }
     });
   }
-  document.addEventListener('DOMContentLoaded', function(){setTimeout(fixCookie,1000);setTimeout(fixCookie,3000);});
-  window.addEventListener('load', function(){setTimeout(fixCookie,500);setTimeout(fixCookie,2000);});
+  document.addEventListener('DOMContentLoaded', function(){setTimeout(fixCookie,500);setTimeout(fixCookie,1500);setTimeout(fixCookie,3000);});
+  window.addEventListener('load', function(){setTimeout(fixCookie,300);setTimeout(fixCookie,1000);setTimeout(fixCookie,2500);});
+  window.addEventListener('resize', fixCookie);
 })();
 </script>
 </head>
