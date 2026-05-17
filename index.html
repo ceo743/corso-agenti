@@ -209,10 +209,11 @@
   @media(max-width:600px){
     .cd-num{font-size:22px}
     .cd-tile{min-width:44px;padding:5px 8px}
-    #floatBar{padding:10px 14px;flex-direction:column;align-items:center;gap:8px}
-    #floatBar .fb-label{display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center}
-    #floatBar .fb-label span:first-child{font-size:10px}
-    #floatBar .fb-label span:last-child{font-size:15px}
+    #floatBar{padding:10px 14px;flex-direction:column!important;align-items:center!important;gap:6px!important}
+    #floatBar>div:first-child{flex-direction:column!important;align-items:center!important;gap:6px!important;width:100%!important}
+    #floatBar .fb-label{display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;gap:2px!important}
+    #floatBar .fb-label span:first-child{font-size:10px!important}
+    #floatBar .fb-label span:last-child{font-size:14px!important}
   }
 </style>
 <div id="floatBar">
