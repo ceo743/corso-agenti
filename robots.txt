@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://corso-agenti.davidecaiazzo.it/sitemap.xml
