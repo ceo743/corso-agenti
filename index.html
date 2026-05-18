@@ -289,9 +289,13 @@
   .cd-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;background:linear-gradient(135deg,#BF953F 0%,#FCF6BA 40%,#D4AF37 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1.05;letter-spacing:-1px}
   .cd-label{font-size:9px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:2px;margin-top:2px;display:block}
   .cd-sep{color:rgba(212,175,55,0.25);font-size:26px;font-family:'Playfair Display',serif;font-weight:900;padding:0 4px;margin-bottom:14px}
+  .fb-tag{font-size:13px}
+  .fb-tagline{font-size:26px}
   #floatBar{position:fixed;bottom:0;left:0;right:0;z-index:300;background:linear-gradient(180deg,rgba(6,8,14,0.97) 0%,rgba(10,12,18,1) 100%);border-top:1px solid rgba(212,175,55,0.2);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;box-shadow:0 -8px 60px rgba(0,0,0,0.7),0 -1px 0 rgba(212,175,55,0.08)}
   #floatBar::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.4) 30%,rgba(212,175,55,0.6) 50%,rgba(212,175,55,0.4) 70%,transparent)}
   @media(max-width:600px){
+    .fb-tag{font-size:12px}
+    .fb-tagline{font-size:20px}
     .cd-num{font-size:22px}
     .cd-tile{min-width:44px;padding:5px 8px}
     #floatBar{padding:10px 14px;flex-direction:column;align-items:center;justify-content:center;gap:8px}
@@ -305,8 +309,8 @@
 </style>
 <div id="floatBar">
   <div class="fb-label" style="display:flex;flex-direction:column;gap:4px">
-    <span style="font-size:12px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:2.5px">⚡ Offerta lancio</span>
-    <span style="font-size:20px;color:rgba(255,255,255,0.7);font-weight:700;line-height:1.2">Il prezzo sale a <strong style="color:#D4AF37">€697</strong> tra</span>
+    <span class="fb-tag" style="color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:2.5px">⚡ Offerta lancio</span>
+    <span class="fb-tagline" style="color:rgba(255,255,255,0.7);font-weight:700;line-height:1.2">Il prezzo sale a <strong style="color:#D4AF37">€697</strong> tra</span>
   </div>
   <div class="fb-bottom" style="display:flex;align-items:center;gap:16px;flex-wrap:nowrap">
     <div style="display:flex;align-items:center;gap:4px">
