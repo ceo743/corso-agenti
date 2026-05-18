@@ -1719,12 +1719,7 @@ function toggleFaq(btn){
 
 // ===== COUNTDOWN =====
 (function(){
-  // Scadenza offerta: 15 maggio 2026 alle 23:59:59 (ora italiana)
   var deadline = new Date('2026-05-18T23:59:59+02:00').getTime();
-  var dEl=document.getElementById('cd-days');
-  var hEl=document.getElementById('cd-hours');
-  var mEl=document.getElementById('cd-mins');
-  var sEl=document.getElementById('cd-secs');
   var d2El=document.getElementById('cd2-days');
   var h2El=document.getElementById('cd2-hours');
   var m2El=document.getElementById('cd2-mins');
@@ -1733,19 +1728,10 @@ function toggleFaq(btn){
   function tick(){
     var now=Date.now();
     var diff=deadline-now;
-    if(diff<=0){
-      dEl.textContent=hEl.textContent=mEl.textContent=sEl.textContent='00';
-      if(d2El) d2El.textContent=h2El.textContent=m2El.textContent=s2El.textContent='00';
-      return;
-    }
-    var days=Math.floor(diff/86400000);
-    var hours=Math.floor((diff%86400000)/3600000);
-    var mins=Math.floor((diff%3600000)/60000);
-    var secs=Math.floor((diff%60000)/1000);
-    dEl.textContent=pad(days);
-    hEl.textContent=pad(hours);
-    mEl.textContent=pad(mins);
-    sEl.textContent=pad(secs);
+    var days=diff<=0?0:Math.floor(diff/86400000);
+    var hours=diff<=0?0:Math.floor((diff%86400000)/3600000);
+    var mins=diff<=0?0:Math.floor((diff%3600000)/60000);
+    var secs=diff<=0?0:Math.floor((diff%60000)/1000);
     if(d2El) d2El.textContent=pad(days);
     if(h2El) h2El.textContent=pad(hours);
     if(m2El) m2El.textContent=pad(mins);
