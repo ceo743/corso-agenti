@@ -1481,9 +1481,9 @@
       </div>
     </div>
     <div class="mauro-cta-label">▶ Ascolta: 1 minuto e 16 secondi</div>
-    <audio id="mauroAudio" src="mauro-pascali.mp3" preload="metadata"></audio>
+    <audio id="mauroAudio" src="mauro-pascali.mp3" preload="auto" playsinline></audio>
     <div class="mauro-player" onclick="toggleMauroAudio()">
-      <button class="mauro-play-btn" id="mauroPlayBtn" aria-label="Riproduci testimonianza">
+      <button type="button" class="mauro-play-btn" id="mauroPlayBtn" aria-label="Riproduci testimonianza" onclick="event.stopPropagation();toggleMauroAudio()">
         <svg viewBox="0 0 24 24" id="mauroIcon" style="width:24px;height:24px;fill:#000;margin-left:3px"><polygon points="5,3 19,12 5,21"/></svg>
       </button>
       <div class="mauro-track-wrap" onclick="event.stopPropagation()">
@@ -1530,9 +1530,22 @@
     document.getElementById('mauroIcon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
   });
   window.toggleMauroAudio = function(){
-    mauroPlaying = !mauroPlaying;
-    if(mauroPlaying){ mauroAudio.play(); document.getElementById('mauroIcon').innerHTML='<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>'; }
-    else { mauroAudio.pause(); document.getElementById('mauroIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>'; }
+    if(!mauroPlaying){
+      var p = mauroAudio.play();
+      if(p !== undefined){
+        p.then(function(){
+          mauroPlaying = true;
+          document.getElementById('mauroIcon').innerHTML='<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+        }).catch(function(){ mauroPlaying = false; });
+      } else {
+        mauroPlaying = true;
+        document.getElementById('mauroIcon').innerHTML='<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+      }
+    } else {
+      mauroAudio.pause();
+      mauroPlaying = false;
+      document.getElementById('mauroIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>';
+    }
   };
   window.seekMauroAudio = function(e){
     var rect = e.currentTarget.getBoundingClientRect();
