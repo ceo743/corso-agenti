@@ -1483,7 +1483,7 @@
     <div class="mauro-cta-label">▶ Ascolta: 1 minuto e 16 secondi</div>
     <audio id="mauroAudio" src="mauro-pascali.mp3" preload="auto" playsinline webkit-playsinline></audio>
     <div class="mauro-player" id="mauroPlayer">
-      <button type="button" class="mauro-play-btn" id="mauroPlayBtn" aria-label="Riproduci testimonianza" style="-webkit-tap-highlight-color:transparent">
+      <button type="button" class="mauro-play-btn" id="mauroPlayBtn" aria-label="Riproduci testimonianza" onclick="doMauroToggle()" style="-webkit-tap-highlight-color:transparent;touch-action:manipulation">
         <svg viewBox="0 0 24 24" id="mauroIcon" style="width:24px;height:24px;fill:#000;margin-left:3px"><polygon points="5,3 19,12 5,21"/></svg>
       </button>
       <div class="mauro-track-wrap">
@@ -1511,7 +1511,6 @@
   var mauroAudio = document.getElementById('mauroAudio');
   var mauroIcon = document.getElementById('mauroIcon');
   var mauroPlaying = false;
-  var tapped = false;
   if(!mauroAudio) return;
 
   function setIcon(playing){
@@ -1520,51 +1519,30 @@
       : '<polygon points="5,3 19,12 5,21"/>';
   }
 
-  function doPlay(){
-    var p = mauroAudio.play();
-    if(p !== undefined){
-      p.then(function(){ mauroPlaying = true; setIcon(true); })
-       .catch(function(err){ console.log('play error:', err); mauroPlaying = false; setIcon(false); });
+  // Esposto globalmente — chiamato dall'onclick sul button (native, iOS-safe)
+  window.doMauroToggle = function(){
+    if(!mauroPlaying){
+      var p = mauroAudio.play();
+      if(p !== undefined){
+        p.then(function(){ mauroPlaying = true; setIcon(true); })
+         .catch(function(){ mauroPlaying = false; setIcon(false); });
+      } else { mauroPlaying = true; setIcon(true); }
     } else {
-      mauroPlaying = true; setIcon(true);
+      mauroAudio.pause(); mauroPlaying = false; setIcon(false);
     }
-  }
-
-  function doToggle(){
-    if(!mauroPlaying){ doPlay(); }
-    else { mauroAudio.pause(); mauroPlaying = false; setIcon(false); }
-  }
-
-  // Registra click + touchend sul player intero e sul button
-  var player = document.getElementById('mauroPlayer');
-  var btn = document.getElementById('mauroPlayBtn');
-
-  function onTap(e){
-    // Ignora tap sulla waveform (seek)
-    if(e.target.classList.contains('mauro-wf-bar') || e.target.id === 'mauroProgress') return;
-    e.preventDefault();
-    doToggle();
-  }
-
-  player.addEventListener('click', function(e){
-    if(e.target.classList.contains('mauro-wf-bar') || e.target.id === 'mauroProgress') return;
-    doToggle();
-  });
-  player.addEventListener('touchend', function(e){
-    if(e.target.classList.contains('mauro-wf-bar') || e.target.id === 'mauroProgress') return;
-    e.preventDefault();
-    doToggle();
-  }, {passive: false});
+  };
 
   // Seek sulla waveform
-  function doSeek(e){
-    var rect = wf.getBoundingClientRect();
-    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    var pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  wf.addEventListener('click', function(e){
+    var pct = Math.max(0, Math.min(1, (e.clientX - wf.getBoundingClientRect().left) / wf.offsetWidth));
     mauroAudio.currentTime = pct * mauroAudio.duration;
-  }
-  wf.addEventListener('click', doSeek);
-  wf.addEventListener('touchend', function(e){ e.preventDefault(); doSeek(e); }, {passive: false});
+  });
+  wf.addEventListener('touchend', function(e){
+    e.preventDefault();
+    var t = e.changedTouches[0];
+    var pct = Math.max(0, Math.min(1, (t.clientX - wf.getBoundingClientRect().left) / wf.offsetWidth));
+    mauroAudio.currentTime = pct * mauroAudio.duration;
+  }, {passive: false});
 
   mauroAudio.addEventListener('loadedmetadata', function(){
     var m = Math.floor(mauroAudio.duration/60);
