@@ -1423,61 +1423,74 @@
      TESTIMONIAL AUDIO — MAURO PASCALI
      ========================================= -->
 <style>
-  #audio{background:#080b10;padding:clamp(60px,8vw,100px) 20px;position:relative}
-  #audio::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(212,175,55,0.06) 0%,transparent 70%);pointer-events:none}
-  .mauro-inner{max-width:680px;margin:0 auto;text-align:center;position:relative;z-index:2}
-  .mauro-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);border-radius:100px;padding:6px 16px;font-size:11px;text-transform:uppercase;letter-spacing:2.5px;color:#D4AF37;font-weight:700;margin-bottom:28px}
-  .mauro-quote{font-family:'Playfair Display',serif;font-size:clamp(1.15rem,2.5vw,1.45rem);color:rgba(255,255,255,0.75);line-height:1.65;font-style:italic;margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto;position:relative;padding:0 8px}
-  .mauro-quote::before{content:'\201C';font-size:4rem;color:rgba(212,175,55,0.2);position:absolute;top:-20px;left:-8px;line-height:1;font-style:normal}
-  .mauro-who{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:32px}
-  .mauro-avatar{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,175,55,0.35);flex-shrink:0}
+  .mauro-section{background:#080b10;padding:clamp(70px,9vw,110px) 20px;position:relative;border-top:1px solid rgba(212,175,55,0.18)}
+  .mauro-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(212,175,55,0.08) 0%,transparent 65%);pointer-events:none}
+  .mauro-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:2}
+  .mauro-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);border-radius:100px;padding:6px 18px;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#D4AF37;font-weight:700;margin-bottom:20px}
+  .mauro-stars{display:flex;justify-content:center;gap:5px;margin-bottom:22px;font-size:22px;line-height:1}
+  .mauro-quote-wrap{position:relative;margin:0 auto 36px;max-width:600px}
+  .mauro-quote-mark{font-family:'Playfair Display',serif;font-size:7rem;color:rgba(212,175,55,0.12);position:absolute;top:-28px;left:4px;line-height:1;pointer-events:none;user-select:none}
+  .mauro-quote{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,2.8vw,1.65rem);color:rgba(255,255,255,0.9);line-height:1.6;font-style:italic;padding:0 24px;position:relative;z-index:1}
+  .mauro-who{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:40px}
+  .mauro-avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,175,55,0.45);box-shadow:0 0 0 5px rgba(212,175,55,0.07);flex-shrink:0}
   .mauro-who-info{text-align:left}
-  .mauro-name{font-size:15px;font-weight:700;color:#fff;line-height:1.2}
-  .mauro-role{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px}
-  .mauro-li-link{display:inline-flex;align-items:center;gap:5px;margin-top:5px;text-decoration:none;color:rgba(255,255,255,0.3);font-size:10px;transition:color 0.2s}
+  .mauro-name{font-size:16px;font-weight:700;color:#fff;line-height:1.2}
+  .mauro-role{font-size:11px;color:rgba(255,255,255,0.45);margin-top:3px;line-height:1.5}
+  .mauro-li-link{display:inline-flex;align-items:center;gap:5px;margin-top:6px;text-decoration:none;color:rgba(255,255,255,0.35);font-size:10px;transition:color 0.2s}
   .mauro-li-link:hover{color:#D4AF37}
   .mauro-li-link svg{width:12px;height:12px;flex-shrink:0}
-  .mauro-cta-label{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:8px}
-  .mauro-cta-label::before,.mauro-cta-label::after{content:'';flex:1;max-width:60px;height:1px;background:rgba(255,255,255,0.1)}
-  .mauro-player{background:rgba(212,175,55,0.04);border:1px solid rgba(212,175,55,0.2);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:18px;margin:0 auto;max-width:560px;cursor:pointer;transition:border-color 0.3s}
-  .mauro-player:hover{border-color:rgba(212,175,55,0.4)}
-  .mauro-play-btn{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#BF953F,#D4AF37);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 0.3s;box-shadow:0 4px 24px rgba(212,175,55,0.35);border:none;animation:mauroPlsPulse 2.5s ease-in-out infinite}
-  @keyframes mauroPlsPulse{0%,100%{box-shadow:0 4px 24px rgba(212,175,55,0.35)}50%{box-shadow:0 4px 36px rgba(212,175,55,0.6),0 0 0 8px rgba(212,175,55,0.08)}}
-  .mauro-play-btn:hover{transform:scale(1.08);animation:none;box-shadow:0 8px 36px rgba(212,175,55,0.5)}
-  @media(max-width:500px){.mauro-player{padding:16px;gap:12px}.mauro-who{flex-direction:column;gap:8px}.mauro-who-info{text-align:center}}
+  .mauro-cta-label{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px}
+  .mauro-cta-label::before,.mauro-cta-label::after{content:'';flex:1;max-width:80px;height:1px;background:rgba(255,255,255,0.1)}
+  .mauro-player{background:rgba(212,175,55,0.06);border:1px solid rgba(212,175,55,0.28);border-radius:20px;padding:22px 28px;display:flex;align-items:center;gap:22px;margin:0 auto;max-width:580px;cursor:pointer;transition:border-color 0.3s,background 0.3s;box-shadow:0 6px 40px rgba(212,175,55,0.07)}
+  .mauro-player:hover{border-color:rgba(212,175,55,0.55);background:rgba(212,175,55,0.1)}
+  .mauro-play-btn{width:68px;height:68px;border-radius:50%;background:linear-gradient(145deg,#BF953F,#FCF6BA,#D4AF37);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 0.3s;border:none;animation:mauroPlsPulse 2.5s ease-in-out infinite;box-shadow:0 6px 30px rgba(212,175,55,0.5)}
+  @keyframes mauroPlsPulse{0%,100%{box-shadow:0 6px 30px rgba(212,175,55,0.45)}50%{box-shadow:0 6px 44px rgba(212,175,55,0.75),0 0 0 10px rgba(212,175,55,0.1)}}
+  .mauro-play-btn:hover{transform:scale(1.1);animation:none;box-shadow:0 10px 44px rgba(212,175,55,0.65)}
+  .mauro-track-wrap{flex:1;display:flex;flex-direction:column;gap:8px}
+  .mauro-waveform{display:flex;align-items:center;gap:2px;height:36px;cursor:pointer}
+  .mauro-wf-bar{flex:1;border-radius:2px;background:rgba(255,255,255,0.1);transition:background 0.15s}
+  .mauro-wf-bar.played{background:rgba(212,175,55,0.6)}
+  .mauro-times{display:flex;justify-content:space-between}
+  @media(max-width:520px){
+    .mauro-player{padding:16px 18px;gap:14px}
+    .mauro-play-btn{width:56px;height:56px}
+    .mauro-who{flex-direction:column;gap:10px}
+    .mauro-who-info{text-align:center}
+    .mauro-quote{padding:0 8px}
+  }
 </style>
-<section style="position:relative">
+<section class="mauro-section" style="position:relative">
   <a id="audio" style="position:absolute;top:-80px;visibility:hidden"></a>
   <div class="mauro-inner">
-    <div class="mauro-badge">🎙️ Feedback a caldo — registrato dopo il modulo 1</div>
-    <h2 class="section-title" style="margin-bottom:20px">Ha ascoltato il modulo 1. <span class="gold">Ecco la sua reazione.</span></h2>
-    <div class="mauro-quote">
-      È una figata pazzesca. Tutto super preciso e dettagliato. Non vedo l'ora di iniziare a creare delle automazioni.
+    <div class="mauro-badge">🎙️ Feedback a caldo, registrato dopo il modulo 1</div>
+    <div class="mauro-stars">⭐⭐⭐⭐⭐</div>
+    <h2 class="section-title" style="margin-bottom:24px">Ha ascoltato il modulo 1. <span class="gold">Ecco la sua reazione.</span></h2>
+    <div class="mauro-quote-wrap">
+      <span class="mauro-quote-mark">&ldquo;</span>
+      <div class="mauro-quote">È una figata pazzesca. Tutto super preciso e dettagliato. Non vedo l'ora di iniziare a creare delle automazioni.</div>
     </div>
     <div class="mauro-who">
       <img src="mauro-pascali.png" alt="Ing. Mauro Pascali" class="mauro-avatar">
       <div class="mauro-who-info">
         <div class="mauro-name">Ing. Mauro Pascali</div>
-        <div class="mauro-role">Consulenze Tecniche per PMI · Impianti Industriali · Ordine Ingegneri RE</div>
+        <div class="mauro-role">Consulenze Tecniche per PMI<br>Impianti Industriali · Ordine Ingegneri RE</div>
         <a href="https://www.linkedin.com/in/mauro-pascali/" target="_blank" rel="noopener" class="mauro-li-link">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           Vedi profilo LinkedIn
         </a>
       </div>
     </div>
-    <div class="mauro-cta-label">▶ Ascolta — 1 minuto e 16 secondi</div>
+    <div class="mauro-cta-label">▶ Ascolta: 1 minuto e 16 secondi</div>
     <audio id="mauroAudio" src="mauro-pascali.mp3" preload="metadata"></audio>
     <div class="mauro-player" onclick="toggleMauroAudio()">
-      <button class="mauro-play-btn" id="mauroPlayBtn">
-        <svg viewBox="0 0 24 24" id="mauroIcon" style="width:22px;height:22px;fill:#000;margin-left:3px"><polygon points="5,3 19,12 5,21"/></svg>
+      <button class="mauro-play-btn" id="mauroPlayBtn" aria-label="Riproduci testimonianza">
+        <svg viewBox="0 0 24 24" id="mauroIcon" style="width:24px;height:24px;fill:#000;margin-left:3px"><polygon points="5,3 19,12 5,21"/></svg>
       </button>
-      <div style="flex:1;display:flex;flex-direction:column;gap:6px" onclick="event.stopPropagation()">
-        <div style="position:relative;height:6px;background:rgba(255,255,255,0.08);border-radius:3px;cursor:pointer" id="mauroProgress" onclick="seekMauroAudio(event)">
-          <div id="mauroBar" style="height:100%;width:0%;background:linear-gradient(90deg,#BF953F,#D4AF37);border-radius:3px;transition:width 0.1s"></div>
-        </div>
-        <div style="display:flex;justify-content:space-between">
-          <span style="font-size:11px;color:rgba(255,255,255,0.3)" id="mauroCurrentTime">0:00</span>
-          <span style="font-size:11px;color:rgba(255,255,255,0.3)" id="mauroDuration">--:--</span>
+      <div class="mauro-track-wrap" onclick="event.stopPropagation()">
+        <div class="mauro-waveform" id="mauroProgress" onclick="seekMauroAudio(event)"></div>
+        <div class="mauro-times">
+          <span style="font-size:11px;color:rgba(255,255,255,0.45)" id="mauroCurrentTime">0:00</span>
+          <span style="font-size:11px;color:rgba(255,255,255,0.45)" id="mauroDuration">1:16</span>
         </div>
       </div>
     </div>
@@ -1485,23 +1498,35 @@
 </section>
 <script>
 (function(){
+  var wf = document.getElementById('mauroProgress');
+  var BARS = 40;
+  var heights = [30,50,65,42,72,58,82,66,48,78,88,62,44,73,92,76,54,84,67,50,38,62,77,55,44,83,68,71,49,88,77,61,44,57,72,84,67,51,40,62];
+  heights.forEach(function(h){
+    var b = document.createElement('div');
+    b.className = 'mauro-wf-bar';
+    b.style.height = h+'%';
+    wf.appendChild(b);
+  });
+  var bars = wf.querySelectorAll('.mauro-wf-bar');
   var mauroAudio = document.getElementById('mauroAudio');
   var mauroPlaying = false;
-  if (!mauroAudio) return;
+  if(!mauroAudio) return;
   mauroAudio.addEventListener('loadedmetadata', function(){
     var m = Math.floor(mauroAudio.duration/60);
     var s = Math.floor(mauroAudio.duration%60);
     document.getElementById('mauroDuration').textContent = m+':'+String(s).padStart(2,'0');
   });
   mauroAudio.addEventListener('timeupdate', function(){
-    var pct = (mauroAudio.currentTime/mauroAudio.duration)*100;
-    document.getElementById('mauroBar').style.width = pct+'%';
+    var pct = mauroAudio.currentTime/mauroAudio.duration;
+    var filled = Math.floor(pct*BARS);
+    bars.forEach(function(b,i){ b.classList.toggle('played', i<filled); });
     var m = Math.floor(mauroAudio.currentTime/60);
     var s = Math.floor(mauroAudio.currentTime%60);
     document.getElementById('mauroCurrentTime').textContent = m+':'+String(s).padStart(2,'0');
   });
   mauroAudio.addEventListener('ended', function(){
     mauroPlaying = false;
+    bars.forEach(function(b){ b.classList.remove('played'); });
     document.getElementById('mauroIcon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
   });
   window.toggleMauroAudio = function(){
