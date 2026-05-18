@@ -1174,10 +1174,79 @@
     </div>
   </div>
 
+  <!-- AUDIO CARD MAURO — duplicata nella sezione testimonianze -->
+  <div style="max-width:640px;margin:40px auto 24px;padding:0 20px">
+    <div style="background:rgba(212,175,55,0.05);border:1px solid rgba(212,175,55,0.2);border-radius:20px;padding:28px 28px 22px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+        <img src="mauro-pascali.png" alt="Ing. Mauro Pascali" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,175,55,0.4);flex-shrink:0">
+        <div>
+          <p style="font-size:14px;font-weight:700;color:#fff;margin-bottom:2px">Ing. Mauro Pascali</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.4)">Consulenze Tecniche per PMI · Impianti Industriali</p>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:4px;font-size:14px">⭐⭐⭐⭐⭐</div>
+      </div>
+      <p style="font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.6;margin-bottom:18px">&ldquo;È una figata pazzesca. Tutto super preciso e dettagliato. Non vedo l'ora di iniziare a creare delle automazioni.&rdquo;</p>
+      <audio id="mauro2Audio" src="mauro-pascali.mp3" preload="auto" playsinline webkit-playsinline></audio>
+      <div style="display:flex;align-items:center;gap:14px;background:rgba(0,0,0,0.3);border:1px solid rgba(212,175,55,0.15);border-radius:12px;padding:12px 16px;cursor:pointer" id="mauro2Player">
+        <button type="button" id="mauro2Btn" onclick="doMauro2Toggle()" aria-label="Riproduci" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#BF953F,#D4AF37);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation">
+          <svg viewBox="0 0 24 24" id="mauro2Icon" style="width:18px;height:18px;fill:#000;margin-left:2px"><polygon points="5,3 19,12 5,21"/></svg>
+        </button>
+        <div style="flex:1">
+          <div id="mauro2Progress" style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;cursor:pointer;margin-bottom:5px">
+            <div id="mauro2Bar" style="height:100%;width:0%;background:linear-gradient(90deg,#BF953F,#D4AF37);border-radius:2px;transition:width 0.1s"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between">
+            <span id="mauro2Time" style="font-size:10px;color:rgba(255,255,255,0.4)">0:00</span>
+            <span id="mauro2Dur" style="font-size:10px;color:rgba(255,255,255,0.4)">1:16</span>
+          </div>
+        </div>
+        <span style="font-size:10px;color:rgba(255,255,255,0.35);white-space:nowrap;flex-shrink:0">🎙️ Feedback a caldo</span>
+      </div>
+    </div>
+  </div>
+
   <div style="text-align:center;margin-top:16px">
     <a href="https://www.davidecaiazzo.it/testimonianze" target="_blank" class="btn-outline" style="font-size:12px;padding:14px 32px">Vedi tutte le testimonianze verificabili &rarr;</a>
   </div>
 </div>
+<script>
+(function(){
+  var a = document.getElementById('mauro2Audio');
+  var icon = document.getElementById('mauro2Icon');
+  var bar = document.getElementById('mauro2Bar');
+  var prog = document.getElementById('mauro2Progress');
+  var timeEl = document.getElementById('mauro2Time');
+  var durEl = document.getElementById('mauro2Dur');
+  var playing = false;
+  if(!a) return;
+  a.addEventListener('loadedmetadata', function(){
+    var m=Math.floor(a.duration/60), s=Math.floor(a.duration%60);
+    durEl.textContent = m+':'+String(s).padStart(2,'0');
+  });
+  a.addEventListener('timeupdate', function(){
+    bar.style.width = (a.currentTime/a.duration*100)+'%';
+    var m=Math.floor(a.currentTime/60), s=Math.floor(a.currentTime%60);
+    timeEl.textContent = m+':'+String(s).padStart(2,'0');
+  });
+  a.addEventListener('ended', function(){
+    playing=false; bar.style.width='0%';
+    icon.innerHTML='<polygon points="5,3 19,12 5,21"/>';
+  });
+  prog.addEventListener('click', function(e){
+    var pct=(e.clientX-prog.getBoundingClientRect().left)/prog.offsetWidth;
+    a.currentTime=Math.max(0,Math.min(1,pct))*a.duration;
+  });
+  window.doMauro2Toggle = function(){
+    if(!playing){
+      var p=a.play();
+      if(p!==undefined){ p.then(function(){ playing=true; icon.innerHTML='<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>'; }).catch(function(){}); }
+      else { playing=true; icon.innerHTML='<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>'; }
+    } else {
+      a.pause(); playing=false; icon.innerHTML='<polygon points="5,3 19,12 5,21"/>';
+    }
+  };
+})();
+</script>
 
 <!-- =========================================
      RASSEGNA STAMPA
