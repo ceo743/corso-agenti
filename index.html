@@ -1451,14 +1451,9 @@
   .mauro-wf-bar{flex:1;border-radius:2px;background:rgba(255,255,255,0.1);transition:background 0.15s}
   .mauro-wf-bar.played{background:rgba(212,175,55,0.6)}
   .mauro-times{display:flex;justify-content:space-between}
-  /* Mobile: player nativo sempre funzionante */
-  .mauro-native{display:none;width:100%;max-width:560px;margin:0 auto;accent-color:#D4AF37}
-  @media(pointer:coarse){
-    .mauro-player{display:none}
-    .mauro-cta-label{display:none}
-    .mauro-native{display:block}
-  }
   @media(max-width:520px){
+    .mauro-player{padding:16px 18px;gap:14px}
+    .mauro-play-btn{width:56px;height:56px}
     .mauro-who{flex-direction:column;gap:10px}
     .mauro-who-info{text-align:center}
     .mauro-quote{padding:0 8px}
@@ -1487,7 +1482,6 @@
     </div>
     <div class="mauro-cta-label">▶ Ascolta: 1 minuto e 16 secondi</div>
     <audio id="mauroAudio" src="mauro-pascali.mp3" preload="auto" playsinline webkit-playsinline></audio>
-    <audio class="mauro-native" src="mauro-pascali.mp3" preload="auto" playsinline webkit-playsinline controls></audio>
     <div class="mauro-player" id="mauroPlayer">
       <button type="button" class="mauro-play-btn" id="mauroPlayBtn" aria-label="Riproduci testimonianza" onclick="doMauroToggle()" style="-webkit-tap-highlight-color:transparent;touch-action:manipulation">
         <svg viewBox="0 0 24 24" id="mauroIcon" style="width:24px;height:24px;fill:#000;margin-left:3px"><polygon points="5,3 19,12 5,21"/></svg>
