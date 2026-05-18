@@ -289,22 +289,35 @@
   .cd-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;background:linear-gradient(135deg,#BF953F 0%,#FCF6BA 40%,#D4AF37 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1.05;letter-spacing:-1px}
   .cd-label{font-size:9px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:2px;margin-top:2px;display:block}
   .cd-sep{color:rgba(212,175,55,0.25);font-size:26px;font-family:'Playfair Display',serif;font-weight:900;padding:0 4px;margin-bottom:14px}
+  /* ── FLOATBAR BASE (desktop > 1024px) ── */
   .fb-tag{font-size:13px}
   .fb-tagline{font-size:26px}
-  #floatBar{position:fixed;bottom:0;left:0;right:0;z-index:300;background:linear-gradient(180deg,rgba(6,8,14,0.97) 0%,rgba(10,12,18,1) 100%);border-top:1px solid rgba(212,175,55,0.2);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;box-shadow:0 -8px 60px rgba(0,0,0,0.7),0 -1px 0 rgba(212,175,55,0.08)}
+  #floatBar{position:fixed;bottom:0;left:0;right:0;z-index:300;background:linear-gradient(180deg,rgba(6,8,14,0.97) 0%,rgba(10,12,18,1) 100%);border-top:1px solid rgba(212,175,55,0.2);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:20px;box-shadow:0 -8px 60px rgba(0,0,0,0.7),0 -1px 0 rgba(212,175,55,0.08)}
   #floatBar::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.4) 30%,rgba(212,175,55,0.6) 50%,rgba(212,175,55,0.4) 70%,transparent)}
-  @media(max-width:600px){
-    .fb-tag{font-size:12px}
+  /* ── FLOATBAR TABLET / iPad (601px – 1024px) ── */
+  @media(max-width:1024px) and (min-width:601px){
+    .fb-tag{font-size:11px}
     .fb-tagline{font-size:20px}
-    .cd-num{font-size:22px}
-    .cd-tile{min-width:44px;padding:5px 8px}
-    #floatBar{padding:10px 14px;flex-direction:column;align-items:center;justify-content:center;gap:8px}
-    #floatBar .fb-label{display:flex!important;flex-direction:column;align-items:center;text-align:center;gap:4px;width:100%}
+    .cd-num{font-size:24px}
+    .cd-tile{min-width:50px;padding:6px 10px}
+    .cd-sep{font-size:20px}
+    #floatBar{padding:12px 20px;gap:14px}
+    #floatBar .btn-gold{padding:13px 26px!important;font-size:11px!important;white-space:nowrap;flex-shrink:0}
+  }
+  /* ── FLOATBAR MOBILE (≤600px) ── */
+  @media(max-width:600px){
+    .fb-tag{font-size:10px}
+    .fb-tagline{font-size:16px}
+    .cd-num{font-size:20px}
+    .cd-tile{min-width:38px;padding:4px 7px}
+    .cd-sep{font-size:16px}
+    #floatBar{padding:10px 14px;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+    #floatBar .fb-label{display:flex!important;flex-direction:column;align-items:center;text-align:center;gap:2px;width:100%}
     #floatBar .fb-label span{text-align:center}
-    #floatBar .fb-bottom{justify-content:center;gap:12px}
+    #floatBar .fb-bottom{justify-content:center;gap:10px}
     #floatBar .cd-tile:last-child{display:none}
     #floatBar span.cd-sep:last-of-type{display:none}
-    #floatBar .btn-gold{padding:11px 22px!important;font-size:11px!important;white-space:nowrap;flex-shrink:0}
+    #floatBar .btn-gold{padding:10px 20px!important;font-size:10px!important;white-space:nowrap;flex-shrink:0}
   }
 </style>
 <div id="floatBar">
