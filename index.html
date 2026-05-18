@@ -1420,6 +1420,96 @@
 </div>
 
 <!-- =========================================
+     TESTIMONIAL AUDIO — MAURO PASCALI
+     ========================================= -->
+<style>
+  #mauro-section{background:#080b10;padding:clamp(60px,8vw,100px) 20px;position:relative}
+  #mauro-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(212,175,55,0.06) 0%,transparent 70%);pointer-events:none}
+  .mauro-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:2}
+  .mauro-player{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:22px 24px;display:flex;align-items:center;gap:18px;margin:0 auto 32px;max-width:600px}
+  .mauro-play-btn{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#BF953F,#D4AF37);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 0.3s;box-shadow:0 4px 20px rgba(212,175,55,0.25);border:none}
+  .mauro-play-btn:hover{transform:scale(1.1);box-shadow:0 8px 30px rgba(212,175,55,0.4)}
+  .mauro-attribution{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+  .mauro-avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,175,55,0.3);flex-shrink:0}
+  .mauro-info{text-align:left}
+  .mauro-name{font-size:16px;font-weight:700;color:#fff;line-height:1.2}
+  .mauro-title{font-size:12px;color:rgba(255,255,255,0.45);margin-top:3px;line-height:1.4}
+  .mauro-li-link{display:inline-flex;align-items:center;gap:6px;margin-top:6px;text-decoration:none;color:rgba(255,255,255,0.35);font-size:11px;transition:color 0.2s}
+  .mauro-li-link:hover{color:#D4AF37}
+  .mauro-li-link svg{width:14px;height:14px;flex-shrink:0}
+  @media(max-width:500px){.mauro-player{padding:16px;gap:12px}.mauro-info{text-align:center}.mauro-attribution{flex-direction:column;gap:12px}}
+</style>
+<section id="mauro-section" class="section" style="scroll-margin-top:80px"><a id="audio" style="position:absolute;top:-80px"></a>
+  <div class="mauro-inner">
+    <p class="section-label" style="margin-bottom:16px">Ascolta</p>
+    <h2 class="section-title" style="margin-bottom:12px">Questo è <span class="gold">Mauro.</span></h2>
+    <p class="body-text" style="margin-bottom:36px;max-width:580px;margin-left:auto;margin-right:auto">
+      Ing. Mauro Pascali, consulente tecnico per PMI nel settore industriale. Ha applicato gli agenti AI alla sua operatività. Ascolta in prima persona cosa ha costruito e perché non tornerebbe indietro.
+    </p>
+    <audio id="mauroAudio" src="mauro-pascali.mp3" preload="metadata"></audio>
+    <div class="mauro-player">
+      <button class="mauro-play-btn" id="mauroPlayBtn" onclick="toggleMauroAudio()">
+        <svg viewBox="0 0 24 24" id="mauroIcon" style="width:20px;height:20px;fill:#000;margin-left:3px"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+      <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+        <div style="position:relative;height:6px;background:rgba(255,255,255,0.08);border-radius:3px;cursor:pointer" id="mauroProgress" onclick="seekMauroAudio(event)">
+          <div id="mauroBar" style="height:100%;width:0%;background:linear-gradient(90deg,#BF953F,#D4AF37);border-radius:3px;transition:width 0.1s"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between">
+          <span style="font-size:11px;color:rgba(255,255,255,0.25)" id="mauroCurrentTime">0:00</span>
+          <span style="font-size:11px;color:rgba(255,255,255,0.25)" id="mauroDuration">--:--</span>
+        </div>
+      </div>
+    </div>
+    <div class="mauro-attribution">
+      <img src="mauro-pascali.png" alt="Ing. Mauro Pascali" class="mauro-avatar">
+      <div class="mauro-info">
+        <div class="mauro-name">Ing. Mauro Pascali</div>
+        <div class="mauro-title">Ing. · Consulenze Tecniche per PMI<br>Impianti Industriali · Ordine Ingegneri RE</div>
+        <a href="https://www.linkedin.com/in/mauro-pascali/" target="_blank" rel="noopener" class="mauro-li-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Vedi profilo LinkedIn
+        </a>
+      </div>
+    </div>
+    <p style="font-size:12px;color:rgba(255,255,255,0.18);margin-top:24px">Testimonianza reale · Mauro Pascali, studente del Corso Agenti AI</p>
+  </div>
+</section>
+<script>
+(function(){
+  var mauroAudio = document.getElementById('mauroAudio');
+  var mauroPlaying = false;
+  if (!mauroAudio) return;
+  mauroAudio.addEventListener('loadedmetadata', function(){
+    var m = Math.floor(mauroAudio.duration/60);
+    var s = Math.floor(mauroAudio.duration%60);
+    document.getElementById('mauroDuration').textContent = m+':'+String(s).padStart(2,'0');
+  });
+  mauroAudio.addEventListener('timeupdate', function(){
+    var pct = (mauroAudio.currentTime/mauroAudio.duration)*100;
+    document.getElementById('mauroBar').style.width = pct+'%';
+    var m = Math.floor(mauroAudio.currentTime/60);
+    var s = Math.floor(mauroAudio.currentTime%60);
+    document.getElementById('mauroCurrentTime').textContent = m+':'+String(s).padStart(2,'0');
+  });
+  mauroAudio.addEventListener('ended', function(){
+    mauroPlaying = false;
+    document.getElementById('mauroIcon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+  });
+  window.toggleMauroAudio = function(){
+    mauroPlaying = !mauroPlaying;
+    if(mauroPlaying){ mauroAudio.play(); document.getElementById('mauroIcon').innerHTML='<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>'; }
+    else { mauroAudio.pause(); document.getElementById('mauroIcon').innerHTML='<polygon points="5,3 19,12 5,21"/>'; }
+  };
+  window.seekMauroAudio = function(e){
+    var rect = e.currentTarget.getBoundingClientRect();
+    var pct = (e.clientX-rect.left)/rect.width;
+    mauroAudio.currentTime = pct*mauroAudio.duration;
+  };
+})();
+</script>
+
+<!-- =========================================
      COUNTDOWN BANNER
      ========================================= -->
 <div id="countdown-banner" style="background:linear-gradient(135deg,rgba(191,149,63,0.12),rgba(212,175,55,0.06));border-top:1px solid rgba(212,175,55,0.2);border-bottom:1px solid rgba(212,175,55,0.2);padding:28px 20px;text-align:center;position:relative;z-index:2">
