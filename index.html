@@ -1709,30 +1709,6 @@ function toggleFaq(btn){
   document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open')});
   if(!isOpen)item.classList.add('open');
 }
-
-// ===== COUNTDOWN =====
-(function(){
-  var deadline = new Date('2026-06-01T23:59:59+02:00').getTime();
-  var d2El=document.getElementById('cd2-days');
-  var h2El=document.getElementById('cd2-hours');
-  var m2El=document.getElementById('cd2-mins');
-  var s2El=document.getElementById('cd2-secs');
-  function pad(n){return n<10?'0'+n:n}
-  function tick(){
-    var now=Date.now();
-    var diff=deadline-now;
-    var days=diff<=0?0:Math.floor(diff/86400000);
-    var hours=diff<=0?0:Math.floor((diff%86400000)/3600000);
-    var mins=diff<=0?0:Math.floor((diff%3600000)/60000);
-    var secs=diff<=0?0:Math.floor((diff%60000)/1000);
-    if(d2El) d2El.textContent=pad(days);
-    if(h2El) h2El.textContent=pad(hours);
-    if(m2El) m2El.textContent=pad(mins);
-    if(s2El) s2El.textContent=pad(secs);
-  }
-  tick();
-  setInterval(tick,1000);
-})();
 </script>
 
 <script>
