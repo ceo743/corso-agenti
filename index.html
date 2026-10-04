@@ -236,46 +236,26 @@
       .sticky-header{padding:10px 16px}
     }
   </style>
-<script async src="//cdn.cookie-script.com/s/5b24cef87a160ab3ee3c8e35c1c61ff9.js"></script>
-<style>
-  #cookiescript_manage_wrap,
-  #cookiescript_injected,
-  div[id^="cookiescript"],
-  div[class^="cookiescript"],
-  #cs-manage-btn-wrap,
-  .cs-manage-btn-wrap { bottom:90px!important; left:16px!important }
-  @media(max-width:600px){
-    #cookiescript_manage_wrap,
-    #cookiescript_injected,
-    div[id^="cookiescript"],
-    div[class^="cookiescript"],
-    #cs-manage-btn-wrap,
-    .cs-manage-btn-wrap { bottom:160px!important; left:16px!important }
-  }
-</style>
+<script src="./gestore-consenso-dc.js" defer></script>
 <script>
 (function(){
-  function fixCookie(){
+  function positionConsent(){
     var bar = document.getElementById('floatBar');
-    var barH = bar ? bar.offsetHeight : 90;
-    var offset = barH + 12;
-    var els = document.querySelectorAll('[id*="cookiescript"],[class*="cookiescript"],[id*="cs-manage"],[class*="cs-manage"]');
-    els.forEach(function(el){
-      var s = window.getComputedStyle(el);
-      if(s.position==='fixed'){
-        el.style.setProperty('bottom', offset+'px', 'important');
-        el.style.setProperty('left','16px','important');
-      }
-    });
+    if(bar) document.documentElement.style.setProperty('--dc-consent-bottom', (bar.getBoundingClientRect().height + 12) + 'px');
   }
-  document.addEventListener('DOMContentLoaded', function(){setTimeout(fixCookie,500);setTimeout(fixCookie,1500);setTimeout(fixCookie,3000);});
-  window.addEventListener('load', function(){setTimeout(fixCookie,300);setTimeout(fixCookie,1000);setTimeout(fixCookie,2500);});
-  window.addEventListener('resize', fixCookie);
+  document.addEventListener('DOMContentLoaded', function(){
+    positionConsent();
+    if(window.ResizeObserver){
+      var bar = document.getElementById('floatBar');
+      if(bar) new ResizeObserver(positionConsent).observe(bar);
+    }
+  });
+  window.addEventListener('resize', positionConsent);
 })();
 </script>
 
 <!-- Meta Pixel Code -->
-<script>
+<script type="text/plain" data-dc-consentcategory="targeting">
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -292,8 +272,6 @@ document.addEventListener('click', function(e){
   if(a && window.fbq){ fbq('track', 'InitiateCheckout'); }
 });
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=568941777677393&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel Code -->
 </head>
 <body>
