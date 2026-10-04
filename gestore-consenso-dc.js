@@ -63,8 +63,11 @@
     var domains = ['', host, '.' + host, 'davidecaiazzo.it', '.davidecaiazzo.it'];
     document.cookie.split(';').forEach(function (item) {
       var name = item.trim().split('=')[0];
-      var analytics = lost.indexOf('performance') !== -1 && /^_ga(?:_|$)/.test(name);
-      var ads = lost.indexOf('targeting') !== -1 && (name === '_fbp' || name === '_fbc');
+      var analytics = lost.indexOf('performance') !== -1 &&
+        (/^_ga(?:_|$)/.test(name) || name === '_gid' || /^_gat(?:_|$)/.test(name));
+      var ads = lost.indexOf('targeting') !== -1 &&
+        (name === '_fbp' || name === '_fbc' || name === '_gcl_au' ||
+          /^rl_(session|anonymous_id|page_init_referrer)$/.test(name));
       if (!analytics && !ads) return;
       paths().forEach(function (path) {
         domains.forEach(function (domain) {
@@ -229,6 +232,9 @@
   }
 
   function start() {
+    clearKnownOptionalCookies(['performance', 'targeting'].filter(function (category) {
+      return !state || !state[category];
+    }));
     render();
     loadAllowedScripts();
   }
